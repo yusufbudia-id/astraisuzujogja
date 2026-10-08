@@ -1,0 +1,17 @@
+{
+  "PATCH_INSTRUCTIONS.txt": "bad4d1cfbfd5fb792984b7bcc46afc4fd159b6bbf8300aee6794e427fa988481",
+  "public/images/e4-detail/colors/awaken-green.webp": "91124347150fd4eb9dad40aa5a45695f45a383c1f775fbd65ea77d7e165c793a",
+  "public/images/e4-detail/colors/black.webp": "f701d3e83dc76c7591c44552985ec827935a74722dd585c05f9e49da2d288c5d",
+  "public/images/e4-detail/colors/moonlight-silver.webp": "fa19ecc4169465136b135a5631916f5d575cc7fe6221b3e989b2feaa5f6bc42f",
+  "public/images/e4-detail/colors/phantom-grey.webp": "a04d51367fe391b9597c3ee66f04b1fac13ef26cbc980efa648ba03540b4c3a0",
+  "public/images/e4-detail/colors/white.webp": "774b7c5c054476b87dd3262f5e6f8fe02a6be22b4d7ff3e2c71fb62299a3e8da",
+  "public/images/e4-detail/e4-hero.webp": "ab7e018d21dd73c3130b05491bdb16e5e4c069a488d5b7d0afb26b0fa4d758f7",
+  "public/images/e4-detail/exterior-detail.webp": "1c2afd0382f07e39101df79e1681356785105c4650829e9ccf77c1131db876a6",
+  "public/images/e4-detail/exterior-white.webp": "fbf1458f7e2db1194df4f7c53640527876a97d6a5b4752f31853534ab2aa47d3",
+  "public/images/e4-detail/head-unit.webp": "677e8d65d2de7c99b89924b2b7ff6d97e3f81d5791ace0d75b524abce5d166e1",
+  "public/images/e4-detail/interior-cabin.webp": "f421bc27cb4f9c9bd75344e5e7f5c0eafcdf73d813c102b4f1ca030ac1c66f40",
+  "public/images/e4-detail/urban-detail.webp": "fdc796d4ebfb0b48e66441fd4bc56b0bc0869bd37abe4e54938f362924c82a02",
+  "public/images/e4-detail/ventilated-seat.webp": "94afd6f329018948f25039e5ccb9e4360835a838432856f309b303ca7de4eb96",
+  "src/app/produk/[slug]/page.tsx": "931d2599e4285baeb14fbdca89c290177295fc56c3df8c66a485aca778ae1dae",
+  "src/lib/products-data.ts": "849d07afc63a8a10ac2179cbf263b6ec8836be051d9f3a17132569a7d60f3577"
+}

@@ -1,0 +1,19 @@
+LEPAS JOGJA — MASTER PROJECT
+
+Homepage / Header / Footer baseline:
+- V10.2 Grid Journal (version user approved as "nice")
+
+Product detail:
+- L8: latest refined version, including V12.6 hero gradient behavior
+- E4: latest compact color panel / hero focus changes from V13.5
+
+Important file locations:
+- Homepage UI: src/app/HomeClient.tsx
+- Homepage route: src/app/page.tsx
+- Header: src/components/Header.tsx
+- Footer: src/components/Footer.tsx
+- Product detail L8 + E4: src/app/produk/[slug]/page.tsx
+- Global CSS: src/app/globals.css
+
+Note:
+Global CSS retains the small E4-specific layout rule required by the latest color selector. Homepage/HomeClient/Header/Footer themselves are unchanged from V10.2.

@@ -1,0 +1,17 @@
+LEPAS JOGJA RECOVERY BUILD
+
+Homepage source:
+- copied directly from lepas-jogja-concept-v10-2-grid-journal.zip
+- src/app/HomeClient.tsx is unchanged from that archive
+- src/app/page.tsx is unchanged from that archive
+- Footer is unchanged from that archive
+
+Header:
+- rebuilt using the original project's thin capsule / frosted-glass navigation structure
+- logo capsule + center glass nav pill + separate champagne CTA
+- no full-width dark navigation bar
+
+Product detail:
+- L8/E4 detail page and their assets are overlaid from the latest product-detail build
+
+Homepage sections are not rewritten in this recovery build.

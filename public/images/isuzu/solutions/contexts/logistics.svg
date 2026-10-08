@@ -1,0 +1,31 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1200" height="800" fill="#E9E9E4"/>
+<rect y="505" width="1200" height="295" fill="#D9DBD4"/>
+<rect y="626" width="1200" height="174" fill="#D1D4CC"/>
+<path d="M0 574H1200" stroke="#C3C7BE" stroke-width="3" stroke-dasharray="18 16"/>
+<path d="M0 610H1200" stroke="#C8CCC3" stroke-width="2"/>
+<rect x="742" y="170" width="310" height="226" rx="10" fill="#CED2C9"/>
+<rect x="758" y="201" width="278" height="178" rx="8" fill="#E6E7E1"/>
+<rect x="782" y="225" width="74" height="130" rx="6" fill="#D4D7D0"/>
+<rect x="875" y="225" width="74" height="130" rx="6" fill="#D4D7D0"/>
+<rect x="968" y="225" width="44" height="130" rx="6" fill="#D4D7D0"/>
+<rect x="100" y="182" width="370" height="208" rx="8" fill="#D5D8D1"/>
+<rect x="124" y="206" width="322" height="164" rx="6" fill="#E5E6E0"/>
+<path d="M124 245H446" stroke="#C0C4BC" stroke-width="3"/>
+<path d="M124 287H446" stroke="#C0C4BC" stroke-width="3"/>
+<path d="M124 329H446" stroke="#C0C4BC" stroke-width="3"/>
+<rect x="164" y="445" width="145" height="84" rx="10" fill="#C4C8BF"/>
+<rect x="179" y="429" width="95" height="18" rx="4" fill="#B8BCB4"/>
+<rect x="355" y="462" width="86" height="57" rx="6" fill="#CBCFC7"/>
+<rect x="372" y="441" width="52" height="18" rx="4" fill="#BDC2B9"/>
+<path d="M542 224L661 163L781 224" stroke="#B7BAB2" stroke-width="10" stroke-linecap="round"/>
+<path d="M598 171V329" stroke="#B7BAB2" stroke-width="10" stroke-linecap="round"/>
+<path d="M743 224V340" stroke="#B7BAB2" stroke-width="10" stroke-linecap="round"/>
+<circle cx="612" cy="480" r="29" fill="#B9BDB5"/>
+<circle cx="705" cy="480" r="29" fill="#B9BDB5"/>
+<path d="M565 478H745" stroke="#B9BDB5" stroke-width="18" stroke-linecap="round"/>
+<rect x="592" y="400" width="98" height="70" rx="10" fill="#D6D9D2"/>
+<rect x="680" y="412" width="45" height="58" rx="8" fill="#D6D9D2"/>
+<path d="M0 0H660C760 95 841 185 916 315C733 401 521 412 341 350C202 302 91 220 0 128V0Z" fill="#D71920" fill-opacity="0.1"/>
+<path d="M912 0H1200V394C1091 418 1010 417 927 394C950 250 951 131 912 0Z" fill="#D71920" fill-opacity="0.08"/>
+</svg>

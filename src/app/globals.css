@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+:root {
+  --background:#f7f3ec;
+  --foreground:#1e2a30;
+  --isuzu-red:#d71920;
+  --deep-navy:#24333f;
+  --graphite:#20201e;
+  --warm-ivory:#f7f3ec;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { margin:0; background:var(--background); color:var(--foreground); font-family:var(--font-jakarta),Arial,sans-serif; }
+::selection { background:#d71920; color:#fff; }
+a { text-decoration:none; }
+button, a { -webkit-tap-highlight-color:transparent; }
+button { cursor:pointer; }
+.section-kicker { font-size:.65rem; line-height:1rem; text-transform:uppercase; letter-spacing:.28em; font-weight:800; color:#d71920; }
+.section-title { font-size:clamp(2.35rem,5vw,4.5rem); line-height:.98; letter-spacing:-.05em; font-weight:600; }
+.input { width:100%; border:1px solid rgba(30,42,48,.14); border-radius:.2rem; background:#fbf8f3; padding:.9rem 1rem; outline:none; }
+.input:focus { border-color:#d71920; }
+.article-content h3 { margin-top:2rem; margin-bottom:.75rem; font-size:1.6rem; line-height:1.3; font-weight:700; color:#1e2a30; }
+.article-content p { margin:0 0 1.25rem; }
+
+.youtube-cover {
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:100vw;
+  height:56.25vw;
+  min-width:177.78vh;
+  min-height:100vh;
+  transform:translate(-50%,-50%);
+  border:0;
+}
+
+* { scrollbar-width:thin; scrollbar-color:rgba(30,42,48,.22) transparent; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior:auto; }
+  .youtube-hero { display:none; }
+}
