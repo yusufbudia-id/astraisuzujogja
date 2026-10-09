@@ -1,6 +1,6 @@
 {
   "name": "astra-isuzu-yogyakarta",
-  "version": "1.6.7",
+  "version": "1.6.8",
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000",
@@ -20,8 +20,8 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "26.2.0",
-    "@types/react": "19.2.18",
-    "@types/react-dom": "^19",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
     "eslint": "^9",
     "eslint-config-next": "^16.1.1",
     "tailwindcss": "^4",

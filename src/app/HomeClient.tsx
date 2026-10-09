@@ -368,10 +368,10 @@ export default function HomeClient() {
                     ? 'max-w-[56%] sm:max-w-[58%]'
                     : 'max-w-[60%] sm:max-w-[58%]';
                 const visualShellClass = isFeatureCard
-                  ? 'h-[180px] w-[48%] min-w-[220px] sm:h-[220px]'
+                  ? 'h-[190px] w-[50%] min-w-[230px] sm:h-[232px]'
                   : isWideCard
-                    ? 'h-[145px] w-[34%] min-w-[165px]'
-                    : 'h-[115px] w-[44%] min-w-[120px] sm:h-[126px]';
+                    ? 'h-[152px] w-[36%] min-w-[172px]'
+                    : 'h-[122px] w-[46%] min-w-[126px] sm:h-[134px]';
                 const visualInsetClass = isFeatureCard
                   ? 'right-4 bottom-4 sm:right-6 sm:bottom-6'
                   : 'right-3 bottom-3 sm:right-4 sm:bottom-4';
@@ -405,15 +405,13 @@ export default function HomeClient() {
                     <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1 bg-[linear-gradient(90deg,#D71920_0%,#EF2B31_45%,rgba(239,43,49,.14)_100%)] opacity-90" />
 
                     <div className={`pointer-events-none absolute z-10 ${visualInsetClass} ${visualShellClass}`}>
-                      <div className="absolute inset-x-[12%] bottom-1 h-5 rounded-[50%] bg-[#202225]/18 blur-2xl sm:h-6" />
-                      <div className="absolute inset-x-0 bottom-0 top-[14%] rounded-[1.8rem] border border-white/55 bg-[radial-gradient(circle_at_50%_32%,rgba(255,255,255,.98)_0%,rgba(255,255,255,.86)_56%,rgba(255,255,255,.18)_100%)] shadow-[0_18px_32px_rgba(20,22,24,.08)] backdrop-blur-[2px]" />
-                      <div className="absolute -right-4 top-3 h-20 w-20 rounded-full bg-[#D71920]/[.12] blur-3xl" />
+                      <div className="absolute inset-x-[16%] bottom-0 h-4 rounded-[50%] bg-[#202225]/14 blur-xl sm:h-5" />
                       <Image
                         src={visualProduct.image}
                         alt={need.visualAlt}
                         fill
                         sizes="(min-width:1024px) 25vw, (min-width:640px) 50vw, 100vw"
-                        className="object-contain drop-shadow-[0_22px_28px_rgba(20,22,24,.2)] transition duration-700 group-hover:translate-y-[-3px] group-hover:scale-[1.045]"
+                        className="object-contain drop-shadow-[0_16px_22px_rgba(20,22,24,.16)] transition duration-700 group-hover:translate-y-[-3px] group-hover:scale-[1.055]"
                         style={{ objectPosition: need.visualPosition }}
                       />
                     </div>
