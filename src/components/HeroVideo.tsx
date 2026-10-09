@@ -14,8 +14,8 @@ export default function HeroVideo() {
         const id = window.requestIdleCallback(() => setReady(true), { timeout: 1400 });
         return () => window.cancelIdleCallback(id);
       }
-      const timer = window.setTimeout(() => setReady(true), 700);
-      return () => window.clearTimeout(timer);
+      const timer = globalThis.setTimeout(() => setReady(true), 700);
+      return () => globalThis.clearTimeout(timer);
     };
 
     if (document.readyState === 'complete') return start();

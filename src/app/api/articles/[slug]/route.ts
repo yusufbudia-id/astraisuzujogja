@@ -4,11 +4,12 @@ import { db } from '@/lib/db';
 // GET /api/articles/[slug] - Get article by slug
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
+    const { slug } = await params;
     const article = await db.article.findUnique({
-      where: { slug: params.slug }
+      where: { slug }
     });
 
     if (!article) {
@@ -31,13 +32,14 @@ export async function GET(
 // PUT /api/articles/[slug] - Update article
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
+    const { slug } = await params;
     const body = await request.json();
 
     const article = await db.article.update({
-      where: { slug: params.slug },
+      where: { slug },
       data: {
         title: body.title,
         slug: body.slug,
@@ -63,11 +65,12 @@ export async function PUT(
 // DELETE /api/articles/[slug] - Delete article
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
+    const { slug } = await params;
     await db.article.delete({
-      where: { slug: params.slug }
+      where: { slug }
     });
 
     return NextResponse.json({ success: true });

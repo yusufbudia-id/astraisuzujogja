@@ -344,8 +344,9 @@ export const getProductShowroomGallery = (product: ProductType): ShowroomGallery
   const directGallery = showroomGalleryBySlug[product.slug];
   if (directGallery?.length) return directGallery;
 
-  const familyGallery = product.family
-    ? Object.entries(showroomGalleryBySlug).find(([slug]) => slug === `isuzu-${product.family.toLowerCase()}`)?.[1]
+  const family = product.family;
+  const familyGallery = family
+    ? Object.entries(showroomGalleryBySlug).find(([slug]) => slug === `isuzu-${family.toLowerCase()}`)?.[1]
     : undefined;
 
   return familyGallery?.length

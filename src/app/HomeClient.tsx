@@ -153,7 +153,7 @@ export default function HomeClient() {
     const selectedFamilies = new Set(need?.models ?? products.map((product) => product.slug));
     return new Set(
       lineupProducts
-        .filter((product) => selectedFamilies.has(product.slug) || selectedFamilies.has(familySlugFor(product.family)))
+        .filter((product) => selectedFamilies.has(product.slug) || selectedFamilies.has(familySlugFor(product.family ?? '')))
         .map((product) => product.slug),
     );
   }, [activeNeed]);

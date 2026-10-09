@@ -37,6 +37,11 @@
     ".next/dev/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "examples/**/*",
+    "src/components/ui/**/*",
+    "src/hooks/use-toast.ts",
+    "src/components/client-body-provider.tsx",
+    "src/lib/utils.ts"
   ]
 }
