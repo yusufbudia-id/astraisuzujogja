@@ -31,17 +31,12 @@
   },
   "include": [
     "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules",
-    "examples/**/*",
-    "src/components/ui/**/*",
-    "src/hooks/use-toast.ts",
-    "src/components/client-body-provider.tsx",
-    "src/lib/utils.ts"
+    "node_modules"
   ]
 }

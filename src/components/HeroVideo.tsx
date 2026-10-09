@@ -10,12 +10,14 @@ export default function HeroVideo() {
     if (reduced) return;
 
     const start = () => {
-      if ('requestIdleCallback' in window) {
-        const id = window.requestIdleCallback(() => setReady(true), { timeout: 1400 });
+      const scheduleIdle = window.requestIdleCallback;
+      if (typeof scheduleIdle === 'function') {
+        const id = scheduleIdle(() => setReady(true), { timeout: 1400 });
         return () => window.cancelIdleCallback(id);
       }
-      const timer = globalThis.setTimeout(() => setReady(true), 700);
-      return () => globalThis.clearTimeout(timer);
+
+      const timer = setTimeout(() => setReady(true), 700);
+      return () => clearTimeout(timer);
     };
 
     if (document.readyState === 'complete') return start();
