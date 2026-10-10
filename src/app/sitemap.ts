@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next';
 import { getSiteUrl } from '@/lib/site-url';
 import { allProductPages } from '@/lib/products-data';
 import { articles } from '@/lib/articles-data';
+import { seoLandingPages } from '@/lib/seo-landing-data';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = getSiteUrl();
@@ -21,6 +22,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}${path}`,
       changeFrequency,
       priority,
+    })),
+    ...seoLandingPages.map((page) => ({
+      url: `${baseUrl}/${page.slug}`,
+      changeFrequency: 'monthly' as const,
+      priority: 0.9,
     })),
     ...allProductPages.map((product) => ({
       url: `${baseUrl}/produk/${product.slug}`,

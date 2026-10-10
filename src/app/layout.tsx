@@ -13,7 +13,7 @@ export const viewport: Viewport = { themeColor: '#D71920' };
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: 'Isuzu Jogja | Harga Isuzu ELF, GIGA & Traga Yogyakarta',
+    default: 'Isuzu Jogja | Harga Truk, ELF, GIGA & Traga Yogyakarta',
     template: '%s | Isuzu Jogja',
   },
   description:
@@ -48,12 +48,12 @@ export const metadata: Metadata = {
     locale: 'id_ID',
     siteName: 'Isuzu Jogja',
     url: baseUrl,
-    title: 'Isuzu Jogja | Harga Isuzu ELF, GIGA & Traga Yogyakarta',
+    title: 'Isuzu Jogja | Harga Truk, ELF, GIGA & Traga Yogyakarta',
     description: 'Informasi produk, harga, pembiayaan dan konsultasi kendaraan Isuzu untuk Yogyakarta dan sekitarnya.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Isuzu Jogja | Harga Isuzu ELF, GIGA & Traga Yogyakarta',
+    title: 'Isuzu Jogja | Harga Truk, ELF, GIGA & Traga Yogyakarta',
     description: 'Informasi produk, harga, pembiayaan dan konsultasi kendaraan Isuzu untuk Yogyakarta dan sekitarnya.',
   },
 };

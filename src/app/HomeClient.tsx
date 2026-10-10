@@ -588,6 +588,36 @@ export default function HomeClient() {
           </div>
         </section>
 
+        <section id="panduan-truk-jogja" className="border-y border-[#202225]/10 bg-[#EEEFEA] px-5 py-6 text-[#202225] sm:px-7 lg:px-10 lg:py-8">
+          <div className="mx-auto max-w-[1440px]">
+            <div className="grid gap-6 lg:grid-cols-[.72fr_1.28fr] lg:items-end">
+              <div>
+                <p className="text-[10px] font-extrabold uppercase tracking-[.3em] text-[#D71920]">Panduan Truk Jogja</p>
+                <h2 className="mt-4 text-[clamp(2.6rem,4.6vw,4.8rem)] font-semibold leading-[.92] tracking-[-.06em]">Cari berdasarkan<br /><span className="text-[#202225]/28">kebutuhan usaha.</span></h2>
+              </div>
+              <p className="max-w-2xl text-sm leading-7 text-[#202225]/56 lg:justify-self-end">Panduan lokal untuk membandingkan harga truk Jogja, truk engkel, double engkel, box, kebutuhan konstruksi, sampai pickup Isuzu Traga.</p>
+            </div>
+            <div className="mt-6 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                ['/harga-truk-jogja', 'Harga Truk Jogja', 'Referensi harga dan model yang punya data OTR.'],
+                ['/truk-engkel-jogja', 'Truk Engkel Jogja', 'ELF NLR 4 ban untuk distribusi ringan.'],
+                ['/truk-double-engkel-jogja', 'Double Engkel Jogja', 'ELF NMR 6 ban untuk box, bak, dan cargo.'],
+                ['/truk-box-jogja', 'Truk Box Jogja', 'Traga, NLR, dan NMR untuk distribusi.'],
+                ['/truk-konstruksi-jogja', 'Truk Konstruksi Jogja', 'GIGA untuk kebutuhan kerja berat dan proyek.'],
+                ['/isuzu-traga-jogja', 'Isuzu Traga Jogja', 'Pickup dan box untuk usaha harian.'],
+                ['/truk-jogja', 'Truk Jogja', 'Hub pilihan truk Isuzu untuk usaha dan fleet.'],
+              ].map(([href, title, text]) => (
+                <Link key={href} href={href} className="group border border-[#202225]/10 bg-white p-4 transition hover:border-[#D71920]/45">
+                  <div className="flex items-start justify-between gap-3">
+                    <div><h3 className="text-sm font-semibold tracking-[-.02em]">{title}</h3><p className="mt-2 text-xs leading-5 text-[#202225]/48">{text}</p></div>
+                    <ArrowRight size={15} className="mt-1 shrink-0 text-[#D71920] transition group-hover:translate-x-1" />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section id="insights" className="bg-white px-5 py-5 sm:px-7 sm:py-6 lg:px-10 lg:py-6">
           <div className="mx-auto max-w-[1440px]">
             <div className="flex flex-col gap-6 border-b border-[#202225]/12 pb-4 sm:flex-row sm:items-end sm:justify-between">

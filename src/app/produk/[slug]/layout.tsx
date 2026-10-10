@@ -4,6 +4,24 @@ import { allProductPages, getProductBySlug } from '@/lib/products-data';
 import { getProductPriceEntries } from '@/lib/pricing-data';
 import { getSiteUrl } from '@/lib/site-url';
 
+const localIntentKeywords: Record<string, string[]> = {
+  'isuzu-traga': [
+    'harga isuzu traga jogja', 'isuzu traga jogja', 'harga traga jogja', 'pickup isuzu jogja',
+    'pickup diesel jogja', 'pickup bak jogja', 'pickup box jogja', 'mobil niaga jogja', 'mobil usaha jogja',
+  ],
+  'isuzu-elf-nlr': [
+    'truk engkel jogja', 'truk ringan jogja', 'truk box jogja', 'truk bak jogja', 'harga truk jogja',
+  ],
+  'isuzu-elf-nmr': [
+    'truk double engkel jogja', 'truk 6 roda jogja', 'truk box jogja', 'truk bak jogja', 'truk untuk distribusi jogja',
+  ],
+  'isuzu-giga-frr': ['truk medium jogja', 'truk untuk distribusi jogja', 'truk box jogja'],
+  'isuzu-giga-ftr': ['truk medium jogja', 'truk untuk distribusi jogja', 'truk untuk usaha jogja'],
+  'isuzu-giga-fvr': ['truk medium jogja', 'truk untuk distribusi jogja', 'truk untuk usaha jogja'],
+  'isuzu-giga-fvm': ['truk 10 roda jogja', 'truk medium jogja', 'truk untuk konstruksi jogja'],
+  'isuzu-giga-fvz': ['truk 10 roda jogja', 'truk untuk konstruksi jogja', 'truk medium jogja'],
+};
+
 export function generateStaticParams() {
   return allProductPages.map((product) => ({ slug: product.slug }));
 }
@@ -32,6 +50,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       `${product.shortName} Yogyakarta`,
       `spesifikasi ${product.shortName}`,
       product.name,
+      ...(localIntentKeywords[product.slug] ?? []),
     ],
     alternates: { canonical },
     openGraph: {
