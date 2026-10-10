@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import HomeClient from './HomeClient';
 
 export const metadata: Metadata = {
-  title: 'Isuzu Jogja | Harga Truk, ELF, GIGA & Traga Yogyakarta',
+  title: { absolute: 'Isuzu Jogja | Harga Truk, ELF, GIGA & Traga Yogyakarta' },
   description:
     'Cari harga dan pilihan Isuzu Jogja: Traga, ELF, GIGA, D-MAX dan MU-X. Konsultasi unit, karoseri, kredit dan kebutuhan fleet bersama Yusuf di Yogyakarta.',
   keywords: [

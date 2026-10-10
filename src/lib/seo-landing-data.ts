@@ -209,6 +209,115 @@ export const seoLandingPages: SeoLandingPage[] = [
       { question: 'Traga cocok untuk usaha apa?', answer: 'Traga relevan untuk distribusi ringan, retail, FMCG, pengiriman barang, dan usaha harian, dengan pemilihan body sesuai kebutuhan muatan.' },
     ],
   },
+
+  {
+    slug: 'truk-bak-jogja',
+    title: 'Truk Bak Jogja | Isuzu untuk Usaha & Distribusi',
+    eyebrow: 'Bak & Operasional Usaha',
+    h1: 'Truk bak Jogja untuk usaha, distribusi, dan angkut harian.',
+    description:
+      'Pilihan truk bak Jogja dari Isuzu Traga, ELF NLR dan ELF NMR untuk usaha, distribusi, retail, material ringan dan operasional harian di Yogyakarta.',
+    keywords: ['truk bak jogja', 'truk untuk usaha jogja', 'truk untuk distribusi jogja', 'pickup bak jogja', 'mobil usaha jogja'],
+    intro:
+      'Body bak cocok untuk usaha yang membutuhkan proses muat-bongkar cepat dan fleksibel. Pemilihan chassis tetap perlu mempertimbangkan berat muatan, panjang body, rute, kondisi jalan, dan frekuensi perjalanan agar unit tidak hanya muat, tetapi juga sesuai pola kerja usaha.',
+    bullets: [
+      'Traga untuk kebutuhan pickup bak dan distribusi ringan.',
+      'ELF NLR untuk light truck 4 ban dengan kapasitas dan dimensi body lebih besar.',
+      'ELF NMR untuk light truck 6 ban saat kebutuhan muatan meningkat.',
+      'Konsultasikan dimensi body dan aplikasi sebelum menentukan chassis akhir.',
+    ],
+    productLinks: [
+      { href: '/produk/isuzu-traga', label: 'Isuzu Traga Pickup', description: 'Pickup niaga ringan untuk usaha dan distribusi harian.' },
+      { href: '/produk/isuzu-elf-nlr', label: 'Isuzu ELF NLR', description: 'Light truck 4 ban untuk bak dan kebutuhan distribusi ringan.' },
+      { href: '/produk/isuzu-elf-nmr', label: 'Isuzu ELF NMR', description: 'Light truck 6 ban untuk kapasitas dan kebutuhan body lebih besar.' },
+      { href: '/harga-truk-jogja', label: 'Harga Truk Jogja', description: 'Lihat model yang memiliki referensi harga OTR Yogyakarta.' },
+    ],
+    faq: [
+      { question: 'Truk Isuzu apa yang cocok untuk body bak?', answer: 'Traga, ELF NLR, dan ELF NMR dapat dipertimbangkan sesuai volume, berat muatan, ukuran body, rute, dan pola operasional.' },
+      { question: 'Apakah harga truk bak sama dengan chassis?', answer: 'Tidak selalu. Harga dapat berbeda menurut chassis, body, spesifikasi karoseri, dan program penjualan. Detail final perlu dikonfirmasi sebelum transaksi.' },
+    ],
+  },
+  {
+    slug: 'truk-distribusi-jogja',
+    title: 'Truk Distribusi Jogja | Isuzu untuk Logistik & Retail',
+    eyebrow: 'Distribusi & Logistik',
+    h1: 'Truk distribusi Jogja untuk retail, logistik, dan fleet.',
+    description:
+      'Cari truk untuk distribusi Jogja? Bandingkan Isuzu Traga, ELF dan GIGA untuk retail, logistik, box, cargo dan kebutuhan fleet di Yogyakarta.',
+    keywords: ['truk untuk distribusi jogja', 'truk box jogja', 'truk untuk usaha jogja', 'pickup untuk distribusi jogja', 'truk medium jogja'],
+    intro:
+      'Kebutuhan distribusi berbeda antara rute dalam kota, antarkota, retail, FMCG, dan fleet. Pemilihan kendaraan perlu menyesuaikan volume muatan, bobot, ritase, jarak tempuh, akses jalan, serta jenis body agar biaya operasional tetap proporsional.',
+    bullets: [
+      'Traga untuk distribusi ringan dan pengiriman last-mile.',
+      'ELF NLR dan NMR untuk box, bak, cargo, dan distribusi harian.',
+      'GIGA FRR, FTR, dan FVR untuk distribusi medium dan antarkota.',
+      'Pilih chassis berdasarkan pola operasi, bukan hanya ukuran body.',
+    ],
+    productLinks: [
+      { href: '/produk/isuzu-traga', label: 'Isuzu Traga', description: 'Pickup dan box untuk distribusi ringan serta retail.' },
+      { href: '/produk/isuzu-elf-nmr', label: 'Isuzu ELF NMR', description: 'Light truck 6 ban untuk box, cargo, dan distribusi.' },
+      { href: '/produk/isuzu-giga-frr', label: 'Isuzu GIGA FRR', description: 'Medium truck untuk distribusi antarkota dan logistik.' },
+      { href: '/truk-box-jogja', label: 'Truk Box Jogja', description: 'Panduan memilih kendaraan untuk body box dan distribusi.' },
+    ],
+    faq: [
+      { question: 'Unit Isuzu apa yang cocok untuk distribusi dalam kota?', answer: 'Traga, ELF NLR, atau ELF NMR dapat dipertimbangkan tergantung volume, bobot muatan, dimensi body, akses jalan, dan ritase.' },
+      { question: 'Bagaimana memilih truk untuk distribusi antarkota?', answer: 'Pertimbangkan muatan, jarak, frekuensi perjalanan, kebutuhan body, dan kapasitas chassis. Untuk kelas lebih besar, lineup GIGA dapat dibandingkan dengan ELF.' },
+    ],
+  },
+  {
+    slug: 'truk-medium-jogja',
+    title: 'Truk Medium Jogja | Isuzu GIGA untuk Logistik & Fleet',
+    eyebrow: 'Medium Truck',
+    h1: 'Truk medium Jogja untuk logistik, fleet, dan angkut berat.',
+    description:
+      'Pilihan truk medium Jogja dari Isuzu GIGA untuk distribusi berat, logistik, fleet, 6x2, 6x4, cargo dan kebutuhan operasional perusahaan.',
+    keywords: ['truk medium jogja', 'truk 6 roda jogja', 'truk 10 roda jogja', 'truk untuk distribusi jogja', 'truk untuk konstruksi jogja'],
+    intro:
+      'Ketika kebutuhan operasi sudah melampaui kelas light truck, Isuzu GIGA menyediakan pilihan medium truck dengan konfigurasi chassis yang berbeda. Jumlah roda atau axle bukan satu-satunya pertimbangan; bobot muatan, jenis body, medan, rute, dan pola kerja juga perlu dihitung.',
+    bullets: [
+      'GIGA FRR, FTR, dan FVR untuk cargo, box, distribusi dan fleet.',
+      'GIGA FVM 6x2 untuk kebutuhan angkut berat dan long haul.',
+      'GIGA FVZ 6x4 untuk konstruksi dan pekerjaan heavy duty.',
+      'GIGA GXZ untuk kebutuhan tractor head dan trailer.',
+    ],
+    productLinks: [
+      { href: '/produk/isuzu-giga-frr', label: 'Isuzu GIGA FRR', description: 'Medium truck untuk distribusi dan logistik.' },
+      { href: '/produk/isuzu-giga-fvr', label: 'Isuzu GIGA FVR', description: 'Pilihan medium truck untuk cargo dan fleet.' },
+      { href: '/produk/isuzu-giga-fvm', label: 'Isuzu GIGA FVM', description: 'Konfigurasi 6x2 untuk angkut berat dan long haul.' },
+      { href: '/produk/isuzu-giga-fvz', label: 'Isuzu GIGA FVZ', description: 'Konfigurasi 6x4 untuk konstruksi dan heavy duty.' },
+    ],
+    faq: [
+      { question: 'Apa yang dimaksud truk medium pada lineup Isuzu?', answer: 'Pada situs ini, lini GIGA menjadi rujukan utama untuk kelas medium truck dan kebutuhan operasional yang lebih berat dibanding ELF.' },
+      { question: 'Apa beda kebutuhan truk 6 roda dan 10 roda?', answer: 'Istilah pasar tersebut perlu diterjemahkan ke konfigurasi chassis, axle, kapasitas, body, dan aplikasi. Pemilihan tidak sebaiknya dilakukan hanya dari jumlah roda.' },
+    ],
+  },
+  {
+    slug: 'pickup-isuzu-jogja',
+    title: 'Pickup Isuzu Jogja | Traga untuk Usaha & Distribusi',
+    eyebrow: 'Pickup Niaga',
+    h1: 'Pickup Isuzu Jogja untuk bak, box, dan kebutuhan usaha.',
+    description:
+      'Cari pickup Isuzu Jogja? Lihat Isuzu Traga untuk pickup bak, box, distribusi ringan, retail, FMCG dan mobil usaha di Yogyakarta.',
+    keywords: ['pickup isuzu jogja', 'pickup diesel jogja', 'pickup bak jogja', 'pickup box jogja', 'pickup untuk usaha jogja', 'pickup untuk distribusi jogja', 'mobil niaga jogja', 'mobil usaha jogja'],
+    intro:
+      'Pickup niaga cocok untuk usaha yang membutuhkan kendaraan lebih ringkas untuk pengiriman harian, retail, distribusi ringan, dan akses jalan yang lebih terbatas. Isuzu Traga menjadi pilihan utama pada cluster pickup niaga di situs ini.',
+    bullets: [
+      'Traga pickup untuk kebutuhan bak dan angkut harian.',
+      'Traga box untuk muatan yang memerlukan ruang tertutup.',
+      'Relevan untuk retail, FMCG, distribusi ringan, dan operasional usaha.',
+      'Jika kebutuhan kapasitas meningkat, bandingkan dengan ELF NLR.',
+    ],
+    productLinks: [
+      { href: '/produk/isuzu-traga', label: 'Isuzu Traga', description: 'Lihat varian, spesifikasi, dan harga yang tersedia.' },
+      { href: '/isuzu-traga-jogja', label: 'Harga Isuzu Traga Jogja', description: 'Panduan lokal Traga untuk pickup dan box.' },
+      { href: '/truk-bak-jogja', label: 'Truk Bak Jogja', description: 'Bandingkan pickup bak dengan light truck untuk kebutuhan usaha.' },
+      { href: '/produk/isuzu-elf-nlr', label: 'Isuzu ELF NLR', description: 'Alternatif kelas light truck ketika kebutuhan kapasitas lebih besar.' },
+    ],
+    faq: [
+      { question: 'Pickup Isuzu apa yang tersedia untuk kebutuhan niaga?', answer: 'Isuzu Traga menjadi pilihan pickup niaga utama di situs ini untuk kebutuhan bak, box, distribusi ringan, dan usaha harian.' },
+      { question: 'Apakah Traga tersedia untuk body box?', answer: 'Ya. Data produk dan pricelist yang digunakan situs ini mencantumkan konfigurasi Traga Box dan RTU Box Semi Aluminium.' },
+    ],
+  },
 ];
 
 export const seoLandingPageMap = Object.fromEntries(seoLandingPages.map((page) => [page.slug, page])) as Record<string, SeoLandingPage>;

@@ -397,7 +397,7 @@ export default function HomeClient() {
                     </div>
                     <div className="pointer-events-none absolute inset-x-0 top-[44%] h-px bg-[#202225]/8" />
                     <div className="pointer-events-none absolute right-[-3%] top-[28%] h-24 w-24 rounded-full bg-[#D71920]/[.14] blur-3xl" />
-                    <div className="pointer-events-none absolute left-4 top-4 z-20 flex items-center gap-2 rounded-full border border-white/70 bg-white/90 px-3 py-1 text-[8px] font-extrabold uppercase tracking-[.16em] text-[#202225]/60 backdrop-blur-sm sm:left-5 sm:top-5">
+                    <div className="pointer-events-none absolute left-4 top-4 z-20 flex items-center gap-2 rounded-full border border-white/75 bg-white/55 px-3 py-1 text-[8px] font-extrabold uppercase tracking-[.16em] text-[#202225]/70 shadow-[0_8px_24px_rgba(20,22,24,.10),inset_0_1px_0_rgba(255,255,255,.86)] backdrop-blur-xl backdrop-saturate-150 sm:left-5 sm:top-5">
                       <span className="h-1.5 w-1.5 rounded-full bg-[#D71920]" />
                       {need.kicker}
                     </div>
@@ -422,7 +422,7 @@ export default function HomeClient() {
                         <ArrowUpRight size={18} className="text-[#202225]/32 transition group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-[#D71920]" />
                       </div>
                       <div className={`mt-auto ${copyWidthClass}`}>
-                        <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#202225]/10 bg-white/92 px-3 py-1 text-[8px] font-extrabold uppercase tracking-[.16em] text-[#202225]/60 backdrop-blur-sm shadow-[0_6px_16px_rgba(20,22,24,.05)]">
+                        <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/52 px-3 py-1 text-[8px] font-extrabold uppercase tracking-[.16em] text-[#202225]/70 shadow-[0_8px_22px_rgba(20,22,24,.09),inset_0_1px_0_rgba(255,255,255,.88)] backdrop-blur-xl backdrop-saturate-150">
                           <span className="h-1.5 w-1.5 rounded-full bg-[#D71920]" />
                           {visualProduct.shortName}
                         </div>
@@ -595,7 +595,7 @@ export default function HomeClient() {
                 <p className="text-[10px] font-extrabold uppercase tracking-[.3em] text-[#D71920]">Panduan Truk Jogja</p>
                 <h2 className="mt-4 text-[clamp(2.6rem,4.6vw,4.8rem)] font-semibold leading-[.92] tracking-[-.06em]">Cari berdasarkan<br /><span className="text-[#202225]/28">kebutuhan usaha.</span></h2>
               </div>
-              <p className="max-w-2xl text-sm leading-7 text-[#202225]/56 lg:justify-self-end">Panduan lokal untuk membandingkan harga truk Jogja, truk engkel, double engkel, box, kebutuhan konstruksi, sampai pickup Isuzu Traga.</p>
+              <p className="max-w-2xl text-sm leading-7 text-[#202225]/56 lg:justify-self-end">Panduan lokal untuk membandingkan harga truk Jogja, engkel, double engkel, box, bak, distribusi, medium truck, konstruksi, sampai pickup Isuzu Traga.</p>
             </div>
             <div className="mt-6 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
               {[
@@ -603,8 +603,12 @@ export default function HomeClient() {
                 ['/truk-engkel-jogja', 'Truk Engkel Jogja', 'ELF NLR 4 ban untuk distribusi ringan.'],
                 ['/truk-double-engkel-jogja', 'Double Engkel Jogja', 'ELF NMR 6 ban untuk box, bak, dan cargo.'],
                 ['/truk-box-jogja', 'Truk Box Jogja', 'Traga, NLR, dan NMR untuk distribusi.'],
+                ['/truk-bak-jogja', 'Truk Bak Jogja', 'Traga, NLR, dan NMR untuk bak dan usaha.'],
+                ['/truk-distribusi-jogja', 'Truk Distribusi Jogja', 'Pilihan unit untuk retail, logistik, dan fleet.'],
+                ['/truk-medium-jogja', 'Truk Medium Jogja', 'GIGA untuk logistik, fleet, dan angkut berat.'],
                 ['/truk-konstruksi-jogja', 'Truk Konstruksi Jogja', 'GIGA untuk kebutuhan kerja berat dan proyek.'],
-                ['/isuzu-traga-jogja', 'Isuzu Traga Jogja', 'Pickup dan box untuk usaha harian.'],
+                ['/pickup-isuzu-jogja', 'Pickup Isuzu Jogja', 'Traga untuk bak, box, dan usaha harian.'],
+                ['/isuzu-traga-jogja', 'Isuzu Traga Jogja', 'Harga, pickup, dan box untuk usaha.'],
                 ['/truk-jogja', 'Truk Jogja', 'Hub pilihan truk Isuzu untuk usaha dan fleet.'],
               ].map(([href, title, text]) => (
                 <Link key={href} href={href} className="group border border-[#202225]/10 bg-white p-4 transition hover:border-[#D71920]/45">

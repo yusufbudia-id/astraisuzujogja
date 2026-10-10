@@ -119,6 +119,23 @@ export default async function SeoLandingPageRoute({ params }: { params: Promise<
           </div>
         </section>
 
+        <section className="border-t border-[#202225]/10 bg-[#EEEFEA] px-5 py-8 sm:px-7 lg:px-10 lg:py-10">
+          <div className="mx-auto grid max-w-[1200px] gap-5 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
+            <div>
+              <p className="text-[10px] font-extrabold uppercase tracking-[.25em] text-[#D71920]">Area layanan</p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-[-.045em] sm:text-4xl">Yogyakarta dan sekitarnya.</h2>
+            </div>
+            <div>
+              <p className="text-sm leading-7 text-[#202225]/58">Konsultasi unit dan kebutuhan usaha melayani area Kota Yogyakarta, Sleman, Bantul, Kulon Progo, dan Gunungkidul. Ketersediaan unit, karoseri, harga, dan proses pengiriman tetap dikonfirmasi sesuai kebutuhan transaksi.</p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {['Kota Yogyakarta', 'Sleman', 'Bantul', 'Kulon Progo', 'Gunungkidul'].map((area) => (
+                  <span key={area} className="border border-[#202225]/10 bg-white px-3 py-2 text-xs font-semibold text-[#202225]/60">{area}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="border-t border-[#202225]/10 bg-[#F7F7F5] px-5 py-10 sm:px-7 lg:px-10 lg:py-14">
           <div className="mx-auto max-w-[1000px]">
             <p className="text-[10px] font-extrabold uppercase tracking-[.25em] text-[#D71920]">FAQ</p>
