@@ -1,21 +1,116 @@
 import type { Metadata } from 'next';
-import { getProductBySlug } from '@/lib/products-data';
 import type { ReactNode } from 'react';
+import { allProductPages, getProductBySlug } from '@/lib/products-data';
+import { getProductPriceEntries } from '@/lib/pricing-data';
+import { getSiteUrl } from '@/lib/site-url';
+
+export function generateStaticParams() {
+  return allProductPages.map((product) => ({ slug: product.slug }));
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const product = getProductBySlug(slug);
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
 
-  return product
-    ? {
-        title: `${product.name} Yogyakarta`,
-        description: `${product.description} Lihat ${product.variants.length} varian dan konsultasikan kebutuhan unit bersama Yusuf Astra Isuzu Yogyakarta.`,
-        alternates: { canonical: `${baseUrl}/produk/${product.slug}` },
-      }
-    : { title: 'Produk Isuzu Yogyakarta' };
+  if (!product) {
+    return {
+      title: 'Produk Isuzu Jogja',
+      robots: { index: false, follow: false },
+    };
+  }
+
+  const canonical = `/produk/${product.slug}`;
+  const title = `${product.shortName} Jogja: Harga & Spesifikasi`;
+  const description = `${product.description} Cek varian, spesifikasi dan informasi harga ${product.shortName} untuk Yogyakarta bersama Yusuf Isuzu Jogja.`;
+
+  return {
+    title,
+    description,
+    keywords: [
+      `${product.shortName} Jogja`,
+      `harga ${product.shortName} Jogja`,
+      `${product.shortName} Yogyakarta`,
+      `spesifikasi ${product.shortName}`,
+      product.name,
+    ],
+    alternates: { canonical },
+    openGraph: {
+      type: 'website',
+      title,
+      description,
+      url: canonical,
+      images: [{ url: product.image, alt: product.imageAlt }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [product.image],
+    },
+  };
 }
 
-export default function Layout({ children }: { children: ReactNode }) {
-  return children;
+export default async function Layout({
+  children,
+  params,
+}: {
+  children: ReactNode;
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const product = getProductBySlug(slug);
+
+  if (!product) return children;
+
+  const baseUrl = getSiteUrl();
+  const productUrl = `${baseUrl}/produk/${product.slug}`;
+  const prices = getProductPriceEntries(product.slug).filter((entry) => (entry.scope ?? 'OTR') === 'OTR');
+  const lowPrice = prices.length ? Math.min(...prices.map((entry) => entry.otr)) : undefined;
+  const highPrice = prices.length ? Math.max(...prices.map((entry) => entry.otr)) : undefined;
+
+  const productJsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Product',
+        '@id': `${productUrl}#product`,
+        name: product.name,
+        description: product.description,
+        image: [`${baseUrl}${product.image}`],
+        url: productUrl,
+        brand: { '@type': 'Brand', name: 'Isuzu' },
+        category: product.category,
+        model: product.shortName,
+        ...(lowPrice !== undefined
+          ? {
+              offers: {
+                '@type': 'AggregateOffer',
+                priceCurrency: 'IDR',
+                lowPrice,
+                highPrice,
+                offerCount: prices.length,
+                availability: 'https://schema.org/InStock',
+                url: productUrl,
+              },
+            }
+          : {}),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${productUrl}#breadcrumb`,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Beranda', item: baseUrl },
+          { '@type': 'ListItem', position: 2, name: 'Produk Isuzu', item: `${baseUrl}/produk` },
+          { '@type': 'ListItem', position: 3, name: product.shortName, item: productUrl },
+        ],
+      },
+    ],
+  };
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
+      {children}
+    </>
+  );
 }

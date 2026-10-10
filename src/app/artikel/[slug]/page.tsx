@@ -1,9 +1,45 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { getArticleBySlug, articles } from '@/lib/articles-data';
 import Link from 'next/link';
 import Image from 'next/image';
+import { getSiteUrl } from '@/lib/site-url';
+
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const article = getArticleBySlug(slug);
+  if (!article) {
+    return { title: 'Artikel Isuzu Jogja', robots: { index: false, follow: false } };
+  }
+
+  const canonical = `/artikel/${article.slug}`;
+  return {
+    title: article.title,
+    description: article.excerpt,
+    keywords: article.tags,
+    authors: [{ name: article.author }],
+    alternates: { canonical },
+    openGraph: {
+      type: 'article',
+      title: article.title,
+      description: article.excerpt,
+      url: canonical,
+      publishedTime: article.date,
+      authors: [article.author],
+      tags: article.tags,
+      images: [{ url: article.thumbnail, alt: article.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: article.title,
+      description: article.excerpt,
+      images: [article.thumbnail],
+    },
+  };
+}
 
 export function generateStaticParams() {
   return articles.map((article) => ({ slug: article.slug }));
@@ -17,7 +53,38 @@ export default async function Article({ params }: { params: Promise<{ slug: stri
     return null;
   }
 
+  const baseUrl = getSiteUrl();
+  const articleUrl = `${baseUrl}/artikel/${article.slug}`;
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Article',
+        '@id': `${articleUrl}#article`,
+        headline: article.title,
+        description: article.excerpt,
+        image: [`${baseUrl}${article.thumbnail}`],
+        datePublished: article.date,
+        dateModified: article.date,
+        author: { '@type': 'Person', name: 'Yusuf', url: `${baseUrl}/kontak` },
+        publisher: { '@type': 'Organization', name: 'Isuzu Jogja', url: baseUrl },
+        mainEntityOfPage: articleUrl,
+        inLanguage: 'id-ID',
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Beranda', item: baseUrl },
+          { '@type': 'ListItem', position: 2, name: 'Artikel', item: `${baseUrl}/artikel` },
+          { '@type': 'ListItem', position: 3, name: article.title, item: articleUrl },
+        ],
+      },
+    ],
+  };
+
   return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
     <div className="min-h-screen bg-[#F7F7F5] text-[#202225]">
       <Header />
       <main>
@@ -43,5 +110,6 @@ export default async function Article({ params }: { params: Promise<{ slug: stri
       </main>
       <Footer />
     </div>
+    </>
   );
 }
