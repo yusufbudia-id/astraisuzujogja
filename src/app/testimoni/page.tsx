@@ -4,7 +4,7 @@ import { Quote } from 'lucide-react';
 
 export default function Testimonials() {
   return (
-    <div className="min-h-screen bg-[#F7F7F5] text-[#202225]">
+    <div className="site-shell min-h-screen text-[#202225]">
       <Header />
       <main>
         <section className="relative overflow-hidden bg-[#24211E] px-5 pb-16 pt-32 text-white sm:px-7 lg:px-10 lg:pb-20">

@@ -63,7 +63,7 @@ export default async function SeoLandingPageRoute({ params }: { params: Promise<
   };
 
   return (
-    <div className="min-h-screen bg-[#F7F7F5] text-[#202225]">
+    <div className="site-shell min-h-screen text-[#202225]">
       <Header />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <main>

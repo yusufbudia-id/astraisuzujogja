@@ -44,7 +44,7 @@ export default function ProductDetailPage() {
 
   if (!product) {
     return (
-      <div className="min-h-screen bg-[#F7F7F5] text-[#202225]">
+      <div className="site-shell min-h-screen text-[#202225]">
         <Header />
         <main className="mx-auto max-w-4xl px-5 pb-24 pt-36 text-center">
           <h1 className="text-4xl font-semibold">Produk tidak ditemukan.</h1>
@@ -70,7 +70,7 @@ export default function ProductDetailPage() {
     openWhatsApp(`Halo Mas Yusuf, saya tertarik dengan ${product.name} (${imageTitle}). Mohon kirimkan foto tambahan, brosur, informasi harga OTR Yogyakarta, dan ketersediaan unit.`);
 
   return (
-    <div className="min-h-screen bg-[#F7F7F5] text-[#202225]">
+    <div className="site-shell min-h-screen text-[#202225]">
       <Header />
       <main>
         <section className="relative overflow-hidden bg-white px-5 pb-14 pt-28 text-[#202225] sm:px-7 lg:px-10 lg:pb-20">

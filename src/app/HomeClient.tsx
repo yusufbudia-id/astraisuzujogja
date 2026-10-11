@@ -167,7 +167,7 @@ export default function HomeClient() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F7F7F5] text-[#202225]">
+    <div className="site-shell min-h-screen text-[#202225]">
       <Header />
 
       <main>
@@ -223,7 +223,7 @@ export default function HomeClient() {
           </div>
         </section>
 
-        <section id="models" className="scroll-mt-16 bg-[#F7F7F5] px-5 py-5 sm:px-7 sm:py-6 lg:px-10 lg:py-6">
+        <section id="models" className="scroll-mt-16 bg-[radial-gradient(circle_at_84%_18%,rgba(215,25,32,.045),transparent_22rem),linear-gradient(180deg,#fafaf7,#f5f5f1)] px-5 py-5 sm:px-7 sm:py-6 lg:px-10 lg:py-6">
           <div className="mx-auto max-w-[1440px]">
             <div className="mb-4 flex flex-col gap-3 border-b border-[#202225]/12 pb-4 lg:flex-row lg:items-end lg:justify-between">
               <div>
@@ -344,7 +344,7 @@ export default function HomeClient() {
           </div>
         </section>
 
-        <section id="solutions" className="scroll-mt-16 bg-[#F1F2EF] px-5 py-5 text-[#202225] sm:px-7 sm:py-6 lg:px-10 lg:py-6">
+        <section id="solutions" className="scroll-mt-16 bg-[radial-gradient(circle_at_6%_10%,rgba(215,25,32,.055),transparent_26rem),linear-gradient(180deg,#f1f2ef_0%,#eceeea_100%)] px-5 py-5 text-[#202225] sm:px-7 sm:py-6 lg:px-10 lg:py-6">
           <div className="mx-auto max-w-[1440px]">
             <div className="grid gap-6 lg:grid-cols-[1fr_.78fr] lg:items-end">
               <div>
@@ -380,7 +380,7 @@ export default function HomeClient() {
                   <button
                     key={need.title}
                     onClick={() => chooseNeed(need.title, need.productSlug)}
-                    className={`group relative overflow-hidden border border-[#202225]/10 bg-[#F3F4F1] text-left text-[#202225] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_36px_rgba(24,24,24,.08)] ${need.span}`}
+                    className={`premium-lift group relative overflow-hidden border border-[#202225]/10 bg-[#F3F4F1] text-left text-[#202225] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_36px_rgba(24,24,24,.08)] ${need.span}`}
                   >
                     <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#f8f8f5_0%,#f2f3ef_100%)]" />
                     <div className="pointer-events-none absolute inset-x-0 top-0 h-[44%] overflow-hidden">
@@ -438,7 +438,7 @@ export default function HomeClient() {
           </div>
         </section>
 
-        <section id="services" className="scroll-mt-16 overflow-hidden bg-[#20201E] px-5 py-5 text-white sm:px-7 sm:py-6 lg:px-10 lg:py-6">
+        <section id="services" className="scroll-mt-16 overflow-hidden bg-[radial-gradient(circle_at_72%_18%,rgba(215,25,32,.13),transparent_28rem),linear-gradient(145deg,#262623_0%,#181816_65%,#20201E_100%)] px-5 py-5 text-white sm:px-7 sm:py-6 lg:px-10 lg:py-6">
           <div className="mx-auto grid max-w-[1440px] gap-7 lg:grid-cols-[1.04fr_.96fr] lg:gap-10">
             <div className="relative min-h-[440px] overflow-hidden border border-white/8 bg-[#292825] sm:min-h-[520px]">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_45%_42%,rgba(255,255,255,.09),transparent_33%),linear-gradient(145deg,#292825_0%,#151513_100%)]" />
@@ -471,7 +471,7 @@ export default function HomeClient() {
           </div>
         </section>
 
-        <section className="overflow-hidden bg-[#F7F7F5] px-5 py-5 sm:px-7 sm:py-6 lg:px-10 lg:py-6">
+        <section className="overflow-hidden bg-[linear-gradient(180deg,#fafaf7,#f4f4f0)] px-5 py-5 sm:px-7 sm:py-6 lg:px-10 lg:py-6">
           <div className="mx-auto max-w-[1440px]">
             <div className="grid items-stretch border-y border-[#202225]/10 lg:grid-cols-[.82fr_1.18fr]">
               <div className="flex flex-col justify-between border-b border-[#202225]/10 py-7 lg:border-b-0 lg:border-r lg:py-9 lg:pr-10">
@@ -503,7 +503,7 @@ export default function HomeClient() {
           </div>
         </section>
 
-        <section id="fleet" className="scroll-mt-16 bg-white px-5 py-5 sm:px-7 sm:py-6 lg:px-10 lg:py-6">
+        <section id="fleet" className="scroll-mt-16 bg-[radial-gradient(circle_at_90%_20%,rgba(215,25,32,.04),transparent_24rem),#fff] px-5 py-5 sm:px-7 sm:py-6 lg:px-10 lg:py-6">
           <div className="mx-auto max-w-[1440px]">
             <div className="grid overflow-hidden border border-[#202225]/10 bg-[#F1F2EF] lg:grid-cols-[1.12fr_.88fr]">
               <div className="relative min-h-[360px] overflow-hidden border-b border-[#202225]/10 lg:min-h-[500px] lg:border-b-0 lg:border-r">

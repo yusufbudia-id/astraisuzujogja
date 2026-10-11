@@ -31,7 +31,7 @@ export default function Credit() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F7F7F5] text-[#202225]">
+    <div className="site-shell min-h-screen text-[#202225]">
       <Header />
 
       <main>

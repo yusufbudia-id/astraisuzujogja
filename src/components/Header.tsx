@@ -29,8 +29,8 @@ export default function Header() {
 
   return (
     <>
-      <header className={`fixed inset-x-0 top-0 z-50 border-b border-[#202225]/10 bg-[#F8F4EC]/92 text-[#202225] backdrop-blur-xl transition-all duration-300 ${scrolled ? 'shadow-[0_14px_40px_rgba(20,22,24,.08)]' : 'shadow-[0_10px_28px_rgba(20,22,24,.04)]'}`}>
-        <div className="h-[3px] bg-[#D71920]" />
+      <header className={`fixed inset-x-0 top-0 z-50 border-b border-white/60 bg-[linear-gradient(180deg,rgba(252,251,248,.94),rgba(247,247,244,.84))] text-[#202225] backdrop-blur-2xl transition-all duration-300 ${scrolled ? 'shadow-[0_18px_50px_rgba(20,22,24,.10)]' : 'shadow-[0_10px_34px_rgba(20,22,24,.05)]'}`}>
+        <div className="h-[3px] bg-[linear-gradient(90deg,#D71920_0%,#EF2B31_38%,#D71920_72%,rgba(215,25,32,.6)_100%)]" />
         <div className={`mx-auto flex max-w-[1440px] items-center justify-between px-5 transition-all duration-300 sm:px-7 lg:px-10 ${scrolled ? 'h-[76px]' : 'h-[84px]'}`}>
           <a href="/" className="flex min-w-0 items-center gap-3" aria-label="Isuzu Jogja Commercial Vehicle Sales">
             <Image
@@ -56,8 +56,8 @@ export default function Header() {
               <p className="text-[10px] font-extrabold uppercase tracking-[.16em] text-[#D71920]">Yogyakarta • Konsultasi Cepat</p>
               <p className="mt-1 text-xs text-[#202225]/54">Unit usaha, fleet, promo, dan harga OTR.</p>
             </div>
-            <button onClick={consult} className="rounded-full border border-[#202225]/12 px-4 py-2.5 text-[10px] font-extrabold uppercase tracking-[.12em] text-[#202225] transition hover:border-[#D71920] hover:text-[#D71920]">Chat Yusuf</button>
-            <button onClick={priceInfo} className="rounded-full bg-[#D71920] px-5 py-2.5 text-[10px] font-extrabold uppercase tracking-[.12em] text-white transition hover:bg-[#B81016]">Tanya Harga</button>
+            <button onClick={consult} className="rounded-full border border-[#202225]/12 bg-white/55 px-4 py-2.5 shadow-[inset_0_1px_0_rgba(255,255,255,.8)] backdrop-blur text-[10px] font-extrabold uppercase tracking-[.12em] text-[#202225] transition hover:border-[#D71920] hover:text-[#D71920]">Chat Yusuf</button>
+            <button onClick={priceInfo} className="rounded-full bg-[linear-gradient(135deg,#D71920,#EF2B31)] px-5 py-2.5 shadow-[0_10px_24px_rgba(215,25,32,.24)] text-[10px] font-extrabold uppercase tracking-[.12em] text-white transition hover:bg-[#B81016]">Tanya Harga</button>
           </div>
 
           <button className="grid h-10 w-10 place-items-center rounded-full border border-[#202225]/10 bg-white/70 lg:hidden" onClick={() => setOpen(!open)} aria-label="Buka menu">

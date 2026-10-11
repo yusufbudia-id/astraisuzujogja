@@ -8,12 +8,14 @@ import { siteConfig } from '@/lib/site-config';
 export default function Footer() {
   const chat = () => openWhatsApp('Halo Mas Yusuf, saya ingin mendapatkan informasi kendaraan Isuzu, promo, dan program pembelian terbaru.');
   return (
-    <footer className="bg-[#1B1D1F] text-white">
-      <div className="h-[3px] bg-[#D71920]" />
+    <footer className="relative overflow-hidden bg-[radial-gradient(circle_at_82%_14%,rgba(215,25,32,.13),transparent_25rem),linear-gradient(145deg,#222426_0%,#141516_62%,#1a1b1d_100%)] text-white">
+      <div className="h-[3px] bg-[linear-gradient(90deg,#D71920,#EF2B31_52%,rgba(239,43,49,.35))]" />
+      <div className="pointer-events-none absolute -right-24 top-8 h-80 w-80 rounded-full border border-white/[.035]" />
+      <div className="pointer-events-none absolute -right-8 top-24 h-52 w-52 rounded-full border border-[#D71920]/10" />
       <div className="mx-auto max-w-[1440px] px-5 py-14 sm:px-7 lg:px-10 lg:py-16">
         <div className="grid gap-12 border-b border-white/10 pb-12 md:grid-cols-[1.3fr_.65fr_.95fr] lg:gap-16">
           <div>
-            <div className="inline-flex rounded-[28px] bg-[#F6F2EA] px-5 py-4 shadow-[0_16px_35px_rgba(0,0,0,.12)]">
+            <div className="inline-flex rounded-[24px] border border-white/70 bg-white/90 px-5 py-4 shadow-[0_18px_44px_rgba(0,0,0,.18),inset_0_1px_0_rgba(255,255,255,.9)] backdrop-blur">
               <Image src="/images/brand/isuzu-jogja-commercial-logo.png" alt="Isuzu Jogja Commercial Vehicle Sales" width={1364} height={504} className="h-12 w-auto md:h-14" />
             </div>
             <p className="mt-5 max-w-md text-sm leading-7 text-white/42">Informasi kendaraan niaga, kebutuhan operasional, program pembelian, dan konsultasi penjualan Isuzu bersama Yusuf di Yogyakarta.</p>
