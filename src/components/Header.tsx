@@ -45,7 +45,7 @@ export default function Header() {
 
           <nav className="hidden items-center gap-7 xl:flex">
             {nav.map(([label, href]) => (
-              <a key={href} href={href} className="text-[11px] font-extrabold uppercase tracking-[.14em] text-[#202225]/62 transition hover:text-[#D71920]">
+              <a key={href} href={href} className="group relative text-[11px] font-extrabold uppercase tracking-[.14em] text-[#202225]/62 transition hover:text-[#D71920] after:absolute after:-bottom-2 after:left-0 after:h-px after:w-0 after:bg-[#D71920] after:transition-all after:duration-300 hover:after:w-full">
                 {label}
               </a>
             ))}
@@ -57,7 +57,7 @@ export default function Header() {
               <p className="mt-1 text-xs text-[#202225]/54">Unit usaha, fleet, promo, dan harga OTR.</p>
             </div>
             <button onClick={consult} className="rounded-full border border-[#202225]/12 bg-white/55 px-4 py-2.5 shadow-[inset_0_1px_0_rgba(255,255,255,.8)] backdrop-blur text-[10px] font-extrabold uppercase tracking-[.12em] text-[#202225] transition hover:border-[#D71920] hover:text-[#D71920]">Chat Yusuf</button>
-            <button onClick={priceInfo} className="rounded-full bg-[linear-gradient(135deg,#D71920,#EF2B31)] px-5 py-2.5 shadow-[0_10px_24px_rgba(215,25,32,.24)] text-[10px] font-extrabold uppercase tracking-[.12em] text-white transition hover:bg-[#B81016]">Tanya Harga</button>
+            <button onClick={priceInfo} className="rounded-full bg-[linear-gradient(135deg,#D71920,#EF2B31)] px-5 py-2.5 shadow-[0_10px_24px_rgba(215,25,32,.24)] text-[10px] font-extrabold uppercase tracking-[.12em] text-white transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_32px_rgba(215,25,32,.32)]">Tanya Harga</button>
           </div>
 
           <button className="grid h-10 w-10 place-items-center rounded-full border border-[#202225]/10 bg-white/70 lg:hidden" onClick={() => setOpen(!open)} aria-label="Buka menu">

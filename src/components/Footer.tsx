@@ -11,6 +11,7 @@ export default function Footer() {
     <footer className="relative overflow-hidden bg-[radial-gradient(circle_at_82%_14%,rgba(215,25,32,.13),transparent_25rem),linear-gradient(145deg,#222426_0%,#141516_62%,#1a1b1d_100%)] text-white">
       <div className="h-[3px] bg-[linear-gradient(90deg,#D71920,#EF2B31_52%,rgba(239,43,49,.35))]" />
       <div className="pointer-events-none absolute -right-24 top-8 h-80 w-80 rounded-full border border-white/[.035]" />
+      <div className="pointer-events-none absolute left-[12%] top-[18%] h-48 w-48 rounded-full bg-[#D71920]/[.07] blur-3xl" />
       <div className="pointer-events-none absolute -right-8 top-24 h-52 w-52 rounded-full border border-[#D71920]/10" />
       <div className="mx-auto max-w-[1440px] px-5 py-14 sm:px-7 lg:px-10 lg:py-16">
         <div className="grid gap-12 border-b border-white/10 pb-12 md:grid-cols-[1.3fr_.65fr_.95fr] lg:gap-16">

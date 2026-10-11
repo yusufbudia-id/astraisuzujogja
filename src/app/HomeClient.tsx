@@ -171,17 +171,19 @@ export default function HomeClient() {
       <Header />
 
       <main>
-        <section id="home" className="relative isolate min-h-[100svh] overflow-hidden bg-[#111214] text-white">
+        <section id="home" className="dynamic-hero relative isolate min-h-[100svh] overflow-hidden bg-[#111214] text-white">
           <Image src="/images/isuzu/hero/hero-poster.svg" alt="" fill sizes="100vw" unoptimized className="object-cover object-center" aria-hidden="true" />
           <HeroVideo />
 
+          <div className="hero-tech-lines pointer-events-none absolute inset-0 opacity-55" />
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(8,9,10,.68)_0%,rgba(8,9,10,.34)_30%,rgba(8,9,10,.04)_62%,rgba(8,9,10,.02)_100%)]" />
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(0deg,rgba(8,9,10,.66)_0%,rgba(8,9,10,.01)_48%,rgba(8,9,10,.12)_100%)]" />
 
           <div className="relative mx-auto flex min-h-[100svh] max-w-[1440px] items-end px-5 pb-20 pt-24 sm:px-7 lg:px-10 lg:pb-24">
             <div className="max-w-[680px]">
-              <div className="mb-5 flex items-center gap-3 text-[10px] font-extrabold uppercase tracking-[.3em] text-white/58">
-                <span className="h-px w-9 bg-[#D71920]" /> Astra Isuzu Yogyakarta
+              <div className="mb-5 flex flex-wrap items-center gap-3">
+                <div className="flex items-center gap-3 text-[10px] font-extrabold uppercase tracking-[.3em] text-white/58"><span className="h-px w-9 bg-[#D71920]" /> Astra Isuzu Yogyakarta</div>
+                <div className="live-chip inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[9px] font-extrabold uppercase tracking-[.16em] text-white/74"><span className="live-dot h-1.5 w-1.5 rounded-full bg-[#EF2B31]" /> Konsultasi penjualan Jogja</div>
               </div>
               <h1 className="text-[clamp(3.2rem,7vw,7.4rem)] font-semibold leading-[.86] tracking-[-.065em]">
                 Built for<br />
@@ -223,7 +225,7 @@ export default function HomeClient() {
           </div>
         </section>
 
-        <section id="models" className="scroll-mt-16 bg-[radial-gradient(circle_at_84%_18%,rgba(215,25,32,.045),transparent_22rem),linear-gradient(180deg,#fafaf7,#f5f5f1)] px-5 py-5 sm:px-7 sm:py-6 lg:px-10 lg:py-6">
+        <section id="models" className="section-glow scroll-mt-16 bg-[radial-gradient(circle_at_84%_18%,rgba(215,25,32,.055),transparent_22rem),linear-gradient(180deg,#fafaf7,#f5f5f1)] px-5 py-5 sm:px-7 sm:py-6 lg:px-10 lg:py-6">
           <div className="mx-auto max-w-[1440px]">
             <div className="mb-4 flex flex-col gap-3 border-b border-[#202225]/12 pb-4 lg:flex-row lg:items-end lg:justify-between">
               <div>
@@ -237,7 +239,7 @@ export default function HomeClient() {
               </p>
             </div>
 
-            <div className="overflow-hidden border border-[#202225]/10 bg-white shadow-[0_18px_48px_rgba(20,22,24,.045)]">
+            <div className="premium-panel overflow-hidden border border-[#202225]/10 bg-white shadow-[0_18px_48px_rgba(20,22,24,.045)]">
               <div className="border-b border-[#202225]/10 bg-[#EEEFEA]">
                 <div className="flex overflow-x-auto lg:grid lg:grid-cols-7 lg:overflow-visible">
                   {lineupProducts.map((product, index) => {
@@ -380,7 +382,7 @@ export default function HomeClient() {
                   <button
                     key={need.title}
                     onClick={() => chooseNeed(need.title, need.productSlug)}
-                    className={`premium-lift group relative overflow-hidden border border-[#202225]/10 bg-[#F3F4F1] text-left text-[#202225] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_36px_rgba(24,24,24,.08)] ${need.span}`}
+                    className={`premium-lift sheen-card group relative overflow-hidden border border-[#202225]/10 bg-[#F3F4F1] text-left text-[#202225] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_36px_rgba(24,24,24,.08)] ${need.span}`}
                   >
                     <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#f8f8f5_0%,#f2f3ef_100%)]" />
                     <div className="pointer-events-none absolute inset-x-0 top-0 h-[44%] overflow-hidden">
@@ -440,11 +442,11 @@ export default function HomeClient() {
 
         <section id="services" className="scroll-mt-16 overflow-hidden bg-[radial-gradient(circle_at_72%_18%,rgba(215,25,32,.13),transparent_28rem),linear-gradient(145deg,#262623_0%,#181816_65%,#20201E_100%)] px-5 py-5 text-white sm:px-7 sm:py-6 lg:px-10 lg:py-6">
           <div className="mx-auto grid max-w-[1440px] gap-7 lg:grid-cols-[1.04fr_.96fr] lg:gap-10">
-            <div className="relative min-h-[440px] overflow-hidden border border-white/8 bg-[#292825] sm:min-h-[520px]">
+            <div className="relative min-h-[440px] overflow-hidden border border-white/8 bg-[#292825] shadow-[0_28px_80px_rgba(0,0,0,.18)] sm:min-h-[520px]">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_45%_42%,rgba(255,255,255,.09),transparent_33%),linear-gradient(145deg,#292825_0%,#151513_100%)]" />
               <div className="absolute inset-x-0 bottom-0 h-[65%] bg-[linear-gradient(0deg,rgba(215,25,32,.12),transparent)]" />
               <div className="relative h-full min-h-[440px] sm:min-h-[520px]">
-                <Image src={products.find((p) => p.slug === 'isuzu-giga')?.image ?? products[0].image} alt="Isuzu GIGA" fill sizes="(min-width:1024px) 50vw, 100vw" className="object-contain p-7 sm:p-10" />
+                <Image src={products.find((p) => p.slug === 'isuzu-giga')?.image ?? products[0].image} alt="Isuzu GIGA" fill sizes="(min-width:1024px) 50vw, 100vw" className="vehicle-float object-contain p-7 sm:p-10" />
                 <div className="absolute bottom-7 left-7 right-7 border-t border-white/12 pt-5 sm:bottom-9 sm:left-9 sm:right-9">
                   <span className="text-[9px] font-extrabold uppercase tracking-[.22em] text-white/32">Engineering in motion</span>
                   <p className="mt-2 max-w-md text-sm leading-7 text-white/48">Kendaraan kerja dinilai bukan saat diam di showroom, tetapi saat ia terus bergerak bersama operasional.</p>
@@ -483,16 +485,18 @@ export default function HomeClient() {
                 <Link href="/produk/isuzu-giga-fvz" className="mt-9 inline-flex w-fit items-center gap-2 border-b border-[#D71920] pb-2 text-xs font-extrabold uppercase tracking-[.12em] text-[#202225] transition hover:text-[#D71920]">Lihat detail FVZ <ArrowRight size={15} /></Link>
               </div>
 
-              <div className="relative min-h-[440px] bg-white lg:min-h-[520px]">
+              <div className="relative min-h-[440px] overflow-hidden bg-white lg:min-h-[520px]">
+                <div className="red-orbit -right-16 top-10 h-64 w-64" />
+                <div className="red-orbit -left-20 bottom-10 h-48 w-48 opacity-40" />
                 <div className="absolute right-4 top-5 text-[clamp(8rem,18vw,17rem)] font-black leading-none tracking-[-.1em] text-[#D71920]/[.085]">6×4</div>
-                <Image src={lineupProducts.find((p) => p.slug === 'isuzu-giga-fvz')?.image ?? products[0].image} alt="Isuzu GIGA FVZ" fill sizes="(min-width:1024px) 65vw, 100vw" className="object-contain px-5 pb-20 pt-6 sm:px-9 lg:px-10" />
+                <Image src={lineupProducts.find((p) => p.slug === 'isuzu-giga-fvz')?.image ?? products[0].image} alt="Isuzu GIGA FVZ" fill sizes="(min-width:1024px) 65vw, 100vw" className="vehicle-float object-contain px-5 pb-20 pt-6 sm:px-9 lg:px-10" />
                 <div className="absolute inset-x-0 bottom-0 grid grid-cols-3 border-t border-[#202225]/10 bg-white/94 backdrop-blur-sm">
                   {[
                     ['285 PS', 'Tenaga'],
                     ['26 TON', 'GVW'],
                     ['6×4', 'Drivetrain'],
                   ].map(([value, label]) => (
-                    <div key={label} className="border-r border-[#202225]/10 px-4 py-4 last:border-r-0 sm:px-6 sm:py-5">
+                    <div key={label} className="metric-cell border-r border-[#202225]/10 px-4 py-4 last:border-r-0 sm:px-6 sm:py-5">
                       <strong className="block text-xl font-semibold tracking-[-.04em] text-[#202225] sm:text-3xl">{value}</strong>
                       <span className="mt-1 block text-[9px] font-extrabold uppercase tracking-[.2em] text-[#202225]/36">{label}</span>
                     </div>
@@ -505,14 +509,14 @@ export default function HomeClient() {
 
         <section id="fleet" className="scroll-mt-16 bg-[radial-gradient(circle_at_90%_20%,rgba(215,25,32,.04),transparent_24rem),#fff] px-5 py-5 sm:px-7 sm:py-6 lg:px-10 lg:py-6">
           <div className="mx-auto max-w-[1440px]">
-            <div className="grid overflow-hidden border border-[#202225]/10 bg-[#F1F2EF] lg:grid-cols-[1.12fr_.88fr]">
+            <div className="premium-panel grid overflow-hidden border border-[#202225]/10 bg-[#F1F2EF] lg:grid-cols-[1.12fr_.88fr]">
               <div className="relative min-h-[360px] overflow-hidden border-b border-[#202225]/10 lg:min-h-[500px] lg:border-b-0 lg:border-r">
                 <div className="absolute inset-0 bg-[linear-gradient(145deg,#ffffff_0%,#e9ebe7_100%)]" />
                 <div className="pointer-events-none absolute left-[-16%] top-[-24%] h-[116%] w-[70%] rounded-br-[11rem] bg-[#D71920]/[.28]" />
                 <div className="pointer-events-none absolute inset-x-[-6%] bottom-[-10%] h-[36%] -skew-x-[18deg] bg-[linear-gradient(90deg,rgba(215,25,32,.32)_0%,rgba(215,25,32,.18)_45%,rgba(215,25,32,0)_78%)]" />
                 <div className="pointer-events-none absolute -right-20 top-0 h-72 w-72 rounded-full bg-[#D71920]/[.16] blur-3xl" />
                 <div className="absolute -right-10 top-8 text-[clamp(7rem,16vw,14rem)] font-black leading-none tracking-[-.1em] text-[#D71920]/[.18]">FLEET</div>
-                <Image src={products.find((p) => p.slug === 'isuzu-elf')?.image ?? products[0].image} alt="Isuzu ELF untuk fleet" fill sizes="(min-width:1024px) 58vw, 100vw" className="object-contain p-7 sm:p-10 lg:p-12" />
+                <Image src={products.find((p) => p.slug === 'isuzu-elf')?.image ?? products[0].image} alt="Isuzu ELF untuk fleet" fill sizes="(min-width:1024px) 58vw, 100vw" className="vehicle-float object-contain p-7 sm:p-10 lg:p-12" />
               </div>
               <div className="flex flex-col justify-center p-7 sm:p-9 lg:p-10">
                 <p className="text-[10px] font-extrabold uppercase tracking-[.3em] text-[#D71920]">Fleet & Corporate</p>
@@ -538,7 +542,7 @@ export default function HomeClient() {
           </div>
         </section>
 
-        <section id="promo" className="scroll-mt-16 overflow-hidden bg-[#D71920] text-white">
+        <section id="promo" className="promo-energy scroll-mt-16 overflow-hidden text-white">
           <div className="mx-auto grid min-h-[220px] max-w-[1440px] lg:grid-cols-[1fr_auto] lg:items-center">
             <div className="px-5 py-5 sm:px-7 sm:py-6 lg:px-10 lg:py-6">
               <p className="text-[10px] font-extrabold uppercase tracking-[.3em] text-white/58">Program Pembelian Isuzu</p>
@@ -553,7 +557,7 @@ export default function HomeClient() {
         </section>
 
         <section id="yusuf" className="scroll-mt-16 bg-[#F1F2EF] px-5 py-5 text-[#202225] sm:px-7 sm:py-6 lg:px-10 lg:py-6">
-          <div className="mx-auto grid max-w-[1440px] overflow-hidden border border-[#202225]/10 lg:grid-cols-[.86fr_1.14fr]">
+          <div className="premium-panel mx-auto grid max-w-[1440px] overflow-hidden border border-[#202225]/10 lg:grid-cols-[.86fr_1.14fr]">
             <div className="relative min-h-[360px] overflow-hidden border-b border-[#202225]/10 bg-[#D71920] sm:min-h-[430px] lg:min-h-[520px] lg:border-b-0 lg:border-r">
               <Image
                 src="/images/profile/yusuf-profile.webp"
@@ -611,7 +615,7 @@ export default function HomeClient() {
                 ['/isuzu-traga-jogja', 'Isuzu Traga Jogja', 'Harga, pickup, dan box untuk usaha.'],
                 ['/truk-jogja', 'Truk Jogja', 'Hub pilihan truk Isuzu untuk usaha dan fleet.'],
               ].map(([href, title, text]) => (
-                <Link key={href} href={href} className="group border border-[#202225]/10 bg-white p-4 transition hover:border-[#D71920]/45">
+                <Link key={href} href={href} className="soft-card group border border-[#202225]/10 bg-white p-4 transition hover:border-[#D71920]/45">
                   <div className="flex items-start justify-between gap-3">
                     <div><h3 className="text-sm font-semibold tracking-[-.02em]">{title}</h3><p className="mt-2 text-xs leading-5 text-[#202225]/48">{text}</p></div>
                     <ArrowRight size={15} className="mt-1 shrink-0 text-[#D71920] transition group-hover:translate-x-1" />
@@ -634,7 +638,7 @@ export default function HomeClient() {
 
             <div className="mt-4 grid gap-2 lg:grid-cols-[1.3fr_.7fr] lg:grid-rows-2">
               {articles.slice(0, 3).map((article, index) => (
-                <Link key={article.slug} href={`/artikel/${article.slug}`} className={`group relative min-h-[220px] overflow-hidden bg-[#F1F2EF] ${index === 0 ? 'lg:row-span-2 lg:min-h-[430px]' : 'lg:min-h-0'}`}>
+                <Link key={article.slug} href={`/artikel/${article.slug}`} className={`soft-card sheen-card group relative min-h-[220px] overflow-hidden bg-[#F1F2EF] ${index === 0 ? 'lg:row-span-2 lg:min-h-[430px]' : 'lg:min-h-0'}`}>
                   <Image src={article.thumbnail} alt={article.title} fill sizes={index === 0 ? '(min-width:1024px) 65vw, 100vw' : '(min-width:1024px) 35vw, 100vw'} className="object-contain p-6 opacity-95 transition duration-700 group-hover:scale-[1.04] group-hover:opacity-100" />
                   <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(255,255,255,.98)_0%,rgba(255,255,255,.70)_44%,rgba(255,255,255,.02)_100%)]" />
                   <div className="relative flex h-full min-h-[220px] flex-col justify-between p-6 sm:p-8 lg:min-h-full">
@@ -651,7 +655,7 @@ export default function HomeClient() {
           <iframe title="Lokasi Astra Isuzu Yogyakarta" className="absolute inset-0 h-full w-full border-0 grayscale-[.15]" src={siteConfig.mapEmbedUrl} loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(32,32,30,.24)_0%,transparent_48%)]" />
           <div className="relative mx-auto flex min-h-[380px] max-w-[1440px] items-end px-5 py-5 sm:px-7 lg:min-h-[420px] lg:px-10 lg:py-6">
-            <div className="pointer-events-auto max-w-xl bg-white p-6 text-[#202225] shadow-[0_30px_80px_rgba(0,0,0,.22)] sm:p-8 lg:p-9">
+            <div className="glass-map-card pointer-events-auto max-w-xl p-6 text-[#202225] sm:p-8 lg:p-9">
               <p className="text-[10px] font-extrabold uppercase tracking-[.3em] text-[#EF2B31]">Visit Us</p>
               <h2 className="mt-4 text-4xl font-semibold tracking-[-.055em] sm:text-5xl">Astra Isuzu<br />Yogyakarta</h2>
               <div className="mt-7 border-t border-[#202225]/10 pt-6">
