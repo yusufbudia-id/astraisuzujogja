@@ -179,28 +179,32 @@ export default function HomeClient() {
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(8,9,10,.68)_0%,rgba(8,9,10,.34)_30%,rgba(8,9,10,.04)_62%,rgba(8,9,10,.02)_100%)]" />
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(0deg,rgba(8,9,10,.66)_0%,rgba(8,9,10,.01)_48%,rgba(8,9,10,.12)_100%)]" />
 
-          <div className="relative mx-auto flex min-h-[100svh] max-w-[1440px] items-end px-5 pb-20 pt-24 sm:px-7 lg:px-10 lg:pb-24">
-            <div className="max-w-[680px]">
-              <div className="mb-5 flex flex-wrap items-center gap-3">
-                <div className="flex items-center gap-3 text-[10px] font-extrabold uppercase tracking-[.3em] text-white/58"><span className="h-px w-9 bg-[#D71920]" /> Astra Isuzu Yogyakarta</div>
-                <div className="live-chip inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[9px] font-extrabold uppercase tracking-[.16em] text-white/74"><span className="live-dot h-1.5 w-1.5 rounded-full bg-[#EF2B31]" /> Konsultasi penjualan Jogja</div>
+          <div className="relative mx-auto flex min-h-[100svh] max-w-[1440px] items-center px-5 pb-36 pt-36 sm:px-7 lg:px-10 lg:pb-32 lg:pt-40">
+            <div className="max-w-[790px]">
+              <div className="mb-7 inline-flex items-center gap-3 border-l-[3px] border-[#EF2B31] bg-black/30 px-4 py-2.5 backdrop-blur-sm">
+                <span className="text-[10px] font-extrabold uppercase tracking-[.24em] text-white/90">ISUZU JOGJA</span>
+                <span className="h-1 w-1 rounded-full bg-[#EF2B31]" />
+                <span className="text-[10px] font-semibold tracking-[.08em] text-white/75">Solusi Kendaraan Niaga</span>
               </div>
-              <h1 className="text-[clamp(3.2rem,7vw,7.4rem)] font-semibold leading-[.86] tracking-[-.065em]">
-                Built for<br />
-                <span className="text-white/45">Business.</span>
+              <h1 className="max-w-[780px] text-[clamp(3.2rem,7.2vw,7.5rem)] font-black uppercase leading-[.94] tracking-[-.055em] text-white drop-shadow-[0_8px_30px_rgba(0,0,0,.2)]">
+                Mitra Tangguh<br />
+                <span className="text-white/90">Bisnis Anda.</span>
               </h1>
-              <div className="mt-7 grid max-w-2xl gap-6 sm:grid-cols-[1fr_auto] sm:items-end">
-                <p className="max-w-xl text-sm leading-7 text-white/65 sm:text-base sm:leading-8">
-                  Isuzu untuk bisnis yang terus bergerak—dari distribusi harian sampai kebutuhan fleet dan operasional perusahaan.
-                </p>
-                <div className="flex flex-wrap gap-2.5 sm:justify-end">
-                  <a href="#models" className="inline-flex items-center gap-2 bg-white px-5 py-3 text-xs font-extrabold text-[#202225] transition hover:bg-[#F3F0EA]">
-                    Explore Lineup <ArrowRight size={15} />
-                  </a>
-                  <button onClick={() => chat('saya ingin konsultasi kendaraan Isuzu untuk kebutuhan usaha saya.')} className="inline-flex items-center gap-2 border border-white/28 bg-white/[.06] px-5 py-3 text-xs font-extrabold text-white backdrop-blur transition hover:bg-white/[.12]">
-                    <MessageCircle size={15} /> Konsultasi Yusuf
-                  </button>
-                </div>
+              <p className="mt-7 max-w-xl border-l border-white/40 pl-5 text-sm leading-7 text-white/85 sm:text-base sm:leading-8">
+                Temukan kendaraan Isuzu untuk distribusi, konstruksi, transportasi, dan pengembangan armada usaha. Bandingkan model dan konsultasikan kebutuhan Anda secara langsung.
+              </p>
+              <div className="mt-9 flex flex-wrap items-center gap-3">
+                <a href="#models" className="inline-flex min-h-12 items-center justify-center gap-2 bg-[#D71920] px-7 py-3.5 text-xs font-extrabold uppercase tracking-[.08em] text-white shadow-[0_14px_38px_rgba(160,12,18,.3)] transition hover:bg-[#B81016] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+                  Jelajahi Produk <ArrowRight size={17} />
+                </a>
+                <button onClick={() => chat('saya ingin konsultasi kendaraan Isuzu yang sesuai dengan kebutuhan bisnis saya.')} className="inline-flex min-h-12 items-center justify-center gap-2 border border-white/60 bg-white/10 px-7 py-3.5 text-xs font-extrabold uppercase tracking-[.08em] text-white backdrop-blur-md transition hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+                  <MessageCircle size={17} /> Konsultasi Gratis
+                </button>
+              </div>
+              <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-[11px] font-semibold text-white/80">
+                <span className="inline-flex items-center gap-2"><Check size={15} className="text-[#FF5960]" /> Konsultasi pilihan unit</span>
+                <span className="inline-flex items-center gap-2"><Check size={15} className="text-[#FF5960]" /> Informasi harga &amp; promo</span>
+                <span className="inline-flex items-center gap-2"><Check size={15} className="text-[#FF5960]" /> Kebutuhan armada perusahaan</span>
               </div>
             </div>
           </div>
