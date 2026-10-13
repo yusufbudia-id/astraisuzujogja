@@ -219,37 +219,52 @@ export default function HomeClient() {
           </div>
         </section>
 
-        {/* Design refresh: instantly visible, photographic lineup cards above the detailed selector. */}
-        <section aria-labelledby="featured-lineup-title" className="relative z-10 bg-[#f6f7f8] px-5 pb-16 pt-16 text-[#18212c] sm:px-7 lg:px-10 lg:pb-20 lg:pt-20">
+        {/* Tahap 2: curated four-family lineup, connected to the existing model selector below. */}
+        <section aria-labelledby="featured-lineup-title" className="relative bg-[#f3f4f5] px-5 py-16 text-[#161c25] sm:px-8 lg:px-12 lg:py-24">
           <div className="mx-auto max-w-[1440px]">
-            <div className="mb-9 grid gap-5 lg:grid-cols-[1fr_360px] lg:items-end">
+            <div className="mb-10 flex flex-col justify-between gap-6 border-b border-[#cfd3d8] pb-9 lg:flex-row lg:items-end">
               <div>
-                <div className="mb-4 flex items-center gap-3 text-[11px] font-black uppercase tracking-[.24em] text-[#D71920]"><span className="h-[3px] w-10 bg-[#D71920]" /> PILIHAN KENDARAAN ISUZU</div>
-                <h2 id="featured-lineup-title" className="max-w-[850px] text-[clamp(2.4rem,5vw,5rem)] font-black uppercase leading-[1.02] tracking-[-.045em]">Solusi untuk setiap <span className="text-[#D71920]">bisnis.</span></h2>
+                <p className="mb-4 flex items-center gap-3 text-[11px] font-black uppercase tracking-[.25em] text-[#D71920]"><span className="h-[3px] w-10 bg-[#D71920]" /> OUR LINEUP</p>
+                <h2 id="featured-lineup-title" className="text-[clamp(2.7rem,5.4vw,5.6rem)] font-black uppercase leading-[.94] tracking-[-.055em]">Dibuat untuk<br /><span className="text-[#D71920]">bisnis bergerak.</span></h2>
               </div>
-              <p className="text-sm leading-7 text-[#5a6570]">Kenali empat keluarga kendaraan Isuzu untuk berbagai kebutuhan. Pilih unit dan lanjutkan ke detail spesifikasinya.</p>
+              <p className="max-w-sm text-sm leading-7 text-[#58616c]">Jelajahi keluarga kendaraan Isuzu, mulai dari kebutuhan niaga harian hingga operasional armada besar. Pilih untuk melihat model dan variannya.</p>
             </div>
             <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-              {(['isuzu-elf','isuzu-giga','isuzu-traga','isuzu-d-max'] as const).map((slug, index) => {
+              {(['isuzu-elf', 'isuzu-giga', 'isuzu-traga', 'isuzu-d-max'] as const).map((slug, index) => {
                 const family = products.find((item) => item.slug === slug);
-                const vehicle = lineupProducts.find((item) => item.family === (family?.shortName ?? '').toUpperCase()) ?? lineupProducts.find((item) => item.slug === slug) ?? lineupProducts[0];
+                const vehicle = lineupProducts.find((item) => item.slug === representativeModelSlug(slug)) ?? lineupProducts.find((item) => item.slug === slug) ?? lineupProducts[0];
+                const labels = [
+                  { headline: 'Fleksibel untuk distribusi', tag: 'LIGHT DUTY' },
+                  { headline: 'Siap untuk muatan besar', tag: 'HEAVY DUTY' },
+                  { headline: 'Andalan usaha harian', tag: 'PICKUP' },
+                  { headline: 'Tangguh di berbagai medan', tag: 'PICKUP 4x4' },
+                ];
+                const label = labels[index];
                 return (
-                  <button key={slug} type="button" onClick={() => { setActiveSlug(vehicle.slug); setActiveNeed(null); document.getElementById('models')?.scrollIntoView({behavior:'smooth'}); }} className="group relative flex min-h-[360px] flex-col overflow-hidden border border-[#e1e4e8] bg-white text-left shadow-[0_18px_40px_rgba(12,25,40,.05)] transition duration-300 hover:-translate-y-1 hover:border-[#d71920]/40 hover:shadow-[0_28px_55px_rgba(12,25,40,.13)]">
-                    <div className="relative h-[225px] overflow-hidden bg-[radial-gradient(ellipse_at_50%_72%,#e5e8ea_0%,#f7f8f9_70%)]">
-                      <div className="absolute left-5 top-5 z-10 text-[10px] font-black tracking-[.2em] text-[#98a1a9]">0{index + 1} / ISUZU</div>
-                      <Image src={vehicle.image} alt={vehicle.imageAlt} fill sizes="(min-width:1280px) 25vw, (min-width:640px) 50vw, 100vw" className="object-contain p-4 pt-8 drop-shadow-[0_22px_18px_rgba(18,28,40,.15)] transition duration-500 group-hover:scale-[1.07]" />
+                  <button key={slug} type="button" aria-label={`Lihat pilihan model ${family?.shortName ?? vehicle.shortName}`} onClick={() => {
+                    setActiveSlug(vehicle.slug);
+                    setActiveNeed(null);
+                    document.getElementById('models')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }} className="group flex min-w-0 flex-col overflow-hidden rounded-[3px] border border-[#dfe2e6] bg-white text-left shadow-[0_10px_28px_rgba(12,22,35,.045)] transition-all duration-300 hover:-translate-y-1 hover:border-[#d71920]/50 hover:shadow-[0_22px_50px_rgba(12,22,35,.13)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D71920]">
+                    <div className="relative flex h-[250px] items-center justify-center overflow-hidden bg-[radial-gradient(ellipse_at_50%_80%,#dfe3e7_0%,#f6f7f8_66%)] sm:h-[275px]">
+                      <span className="absolute left-6 top-5 z-10 text-[11px] font-black tracking-[.22em] text-[#7f8b96]">0{index + 1}</span>
+                      <span className="absolute right-5 top-5 z-10 border border-[#d7dce1] bg-white/75 px-2.5 py-1.5 text-[9px] font-black tracking-[.12em] text-[#4e5a66]">{label.tag}</span>
+                      <Image src={vehicle.image} alt={vehicle.imageAlt} fill sizes="(min-width:1280px) 25vw, (min-width:640px) 50vw, 100vw" className="object-contain p-5 pt-10 drop-shadow-[0_21px_13px_rgba(23,32,44,.14)] transition-transform duration-500 group-hover:scale-110" />
+                      <span className="absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-[#D71920] transition-transform duration-300 group-hover:scale-x-100" />
                     </div>
-                    <div className="flex flex-1 flex-col justify-between p-6">
-                      <div><p className="text-[10px] font-black uppercase tracking-[.16em] text-[#D71920]">Kendaraan Isuzu</p><h3 className="mt-2 text-[25px] font-black uppercase leading-tight tracking-[-.04em]">{family?.shortName ?? vehicle.shortName}</h3><p className="mt-2 text-[12px] leading-5 text-[#65717b]">{family?.description ?? vehicle.description}</p></div>
-                      <span className="mt-5 inline-flex items-center justify-between border-t border-[#e8ebee] pt-4 text-[11px] font-extrabold uppercase tracking-[.1em] text-[#1c2732]">Lihat varian <ArrowUpRight size={17} className="text-[#D71920] transition group-hover:translate-x-1 group-hover:-translate-y-1" /></span>
+                    <div className="flex flex-1 flex-col p-6">
+                      <p className="text-[10px] font-extrabold uppercase tracking-[.18em] text-[#D71920]">ISUZU {family?.shortName ?? vehicle.shortName}</p>
+                      <h3 className="mt-2 text-[23px] font-black leading-tight tracking-[-.035em]">{label.headline}</h3>
+                      <p className="mt-3 flex-1 text-[12px] leading-6 text-[#69737e]">{family?.description ?? vehicle.description}</p>
+                      <span className="mt-6 flex items-center justify-between border-t border-[#e6e8eb] pt-4 text-[11px] font-extrabold uppercase tracking-[.1em] text-[#1d2835]">Lihat model &amp; varian <ArrowUpRight size={18} className="text-[#D71920] transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" /></span>
                     </div>
                   </button>
                 );
               })}
             </div>
-            <div className="mt-7 flex flex-wrap items-center justify-between gap-4 border-l-4 border-[#D71920] bg-white px-6 py-5 shadow-[0_10px_25px_rgba(12,25,40,.035)]">
-              <p className="text-sm font-semibold text-[#263442]">Belum yakin unit yang sesuai dengan bisnis Anda?</p>
-              <button onClick={() => chat('saya ingin rekomendasi kendaraan Isuzu untuk bisnis saya.')} className="inline-flex items-center gap-2 bg-[#D71920] px-5 py-3 text-xs font-black uppercase text-white transition hover:bg-[#ac1017]"><MessageCircle size={16}/> Konsultasikan kebutuhan <ArrowRight size={16}/></button>
+            <div className="mt-8 flex flex-col justify-between gap-5 border-l-[4px] border-[#D71920] bg-[#18232f] px-7 py-6 text-white sm:flex-row sm:items-center">
+              <div><p className="text-base font-bold">Butuh rekomendasi kendaraan untuk usaha Anda?</p><p className="mt-1 text-xs leading-5 text-white/65">Konsultasikan kebutuhan muatan, rute, dan anggaran sebelum memilih unit.</p></div>
+              <button type="button" onClick={() => chat('saya ingin rekomendasi kendaraan Isuzu yang sesuai kebutuhan bisnis saya.')} className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 bg-[#D71920] px-6 py-3 text-xs font-black uppercase tracking-[.07em] text-white transition hover:bg-[#b7141b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"><MessageCircle size={17} /> Konsultasi WhatsApp <ArrowRight size={16} /></button>
             </div>
           </div>
         </section>
