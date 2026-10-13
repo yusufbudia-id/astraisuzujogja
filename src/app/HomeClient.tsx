@@ -445,33 +445,66 @@ export default function HomeClient() {
           </div>
         </section>
 
-        <section id="services" className="scroll-mt-16 overflow-hidden bg-[radial-gradient(circle_at_72%_18%,rgba(215,25,32,.13),transparent_28rem),linear-gradient(145deg,#262623_0%,#181816_65%,#20201E_100%)] px-5 py-5 text-white sm:px-7 sm:py-6 lg:px-10 lg:py-6">
-          <div className="mx-auto grid max-w-[1440px] gap-7 lg:grid-cols-[1.04fr_.96fr] lg:gap-10">
-            <div className="relative min-h-[440px] overflow-hidden border border-white/8 bg-[#292825] shadow-[0_28px_80px_rgba(0,0,0,.18)] sm:min-h-[520px]">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_45%_42%,rgba(255,255,255,.09),transparent_33%),linear-gradient(145deg,#292825_0%,#151513_100%)]" />
-              <div className="absolute inset-x-0 bottom-0 h-[65%] bg-[linear-gradient(0deg,rgba(215,25,32,.12),transparent)]" />
-              <div className="relative h-full min-h-[440px] sm:min-h-[520px]">
-                <Image src={products.find((p) => p.slug === 'isuzu-giga')?.image ?? products[0].image} alt="Isuzu GIGA" fill sizes="(min-width:1024px) 50vw, 100vw" className="vehicle-float object-contain p-7 sm:p-10" />
-                <div className="absolute bottom-7 left-7 right-7 border-t border-white/12 pt-5 sm:bottom-9 sm:left-9 sm:right-9">
-                  <span className="text-[9px] font-extrabold uppercase tracking-[.22em] text-white/32">Engineering in motion</span>
-                  <p className="mt-2 max-w-md text-sm leading-7 text-white/48">Kendaraan kerja dinilai bukan saat diam di showroom, tetapi saat ia terus bergerak bersama operasional.</p>
-                </div>
+        <section id="services" className="scroll-mt-20 overflow-hidden bg-[#101821] px-5 py-20 text-white sm:px-7 lg:px-10 lg:py-24">
+          <div className="mx-auto max-w-[1440px]">
+            <div className="grid gap-9 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,.95fr)] lg:items-end">
+              <div>
+                <p className="inline-flex items-center gap-3 text-[11px] font-black uppercase tracking-[.23em] text-[#FF5358]"><span className="h-[3px] w-10 bg-[#EF2B31]" /> KEUNGGULAN & DUKUNGAN</p>
+                <h2 className="mt-5 max-w-3xl text-[clamp(2.7rem,5.4vw,5.8rem)] font-black uppercase leading-[.98] tracking-[-.052em]">Partner bisnis.<br /><span className="text-white/40">Dalam setiap perjalanan.</span></h2>
+              </div>
+              <div className="max-w-lg lg:justify-self-end">
+                <p className="text-sm leading-7 text-white/65">Memilih kendaraan usaha bukan hanya soal unit. Pertimbangkan kebutuhan operasional, kemudahan perawatan, ketersediaan suku cadang, dan dukungan setelah pembelian.</p>
+                <button type="button" onClick={() => chat('saya ingin bertanya tentang dukungan perawatan dan layanan purnajual kendaraan Isuzu.')} className="mt-6 inline-flex min-h-12 items-center gap-3 bg-[#D71920] px-6 py-3 text-xs font-extrabold uppercase tracking-[.08em] text-white transition hover:bg-[#B81016] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Konsultasi Layanan <ArrowUpRight size={17} /></button>
               </div>
             </div>
 
-            <div className="lg:py-4">
-              <p className="text-[10px] font-extrabold uppercase tracking-[.3em] text-[#EF2B31]">Why Isuzu</p>
-              <h2 className="mt-4 max-w-2xl text-[clamp(2.8rem,5vw,5.5rem)] font-semibold leading-[.92] tracking-[-.06em]">Built to keep<br /><span className="text-white/26">business moving.</span></h2>
-              <div className="mt-7 border-t border-white/10">
+            <div className="mt-11 grid gap-4 lg:grid-cols-[1.1fr_.9fr]">
+              <div className="relative flex min-h-[370px] flex-col justify-end overflow-hidden bg-[#242d35] sm:min-h-[460px]">
+                <Image src={products.find((p) => p.slug === 'isuzu-giga')?.image ?? products[0].image} alt="Kendaraan Isuzu GIGA untuk mendukung kebutuhan usaha" fill sizes="(min-width:1024px) 58vw, 100vw" className="object-contain px-6 pb-20 pt-2 sm:px-10 sm:pb-20" />
+                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(0deg,rgba(6,11,17,.93)_0%,rgba(6,11,17,.35)_38%,transparent_72%)]" />
+                <div className="relative z-10 p-6 sm:p-9">
+                  <span className="text-[10px] font-extrabold uppercase tracking-[.25em] text-[#FF5358]">ISUZU FOR BUSINESS</span>
+                  <h3 className="mt-2 max-w-lg text-2xl font-black uppercase leading-tight tracking-[-.035em] sm:text-3xl">Kendaraan yang tepat untuk pekerjaan yang tepat.</h3>
+                </div>
+              </div>
+              <div className="grid gap-3 sm:grid-cols-2">
                 {engineering.map(({ n, title, text, icon: Icon }) => (
-                  <div key={n} className="group grid grid-cols-[44px_1fr_auto] gap-4 border-b border-white/10 py-4 sm:grid-cols-[56px_1fr_auto] sm:py-5">
-                    <span className="pt-1 text-sm font-semibold text-[#EF2B31]">{n}</span>
-                    <div>
-                      <h3 className="text-xl font-semibold tracking-[-.03em] sm:text-2xl">{title}</h3>
-                      <p className="mt-2 max-w-xl text-sm leading-7 text-white/42">{text}</p>
+                  <div key={n} className="group flex min-h-[210px] flex-col justify-between border border-white/10 bg-[#1b2631] p-6 transition-colors hover:border-[#EF2B31]/60 hover:bg-[#243240] sm:p-7">
+                    <div className="flex items-start justify-between">
+                      <div className="flex h-12 w-12 items-center justify-center border border-[#EF2B31]/40 bg-[#EF2B31]/10 text-[#FF5358]"><Icon size={23} strokeWidth={1.6} /></div>
+                      <span className="text-[10px] font-black tracking-[.2em] text-white/30">{n}</span>
                     </div>
-                    <Icon size={22} strokeWidth={1.35} className="mt-1 text-white/18 transition group-hover:text-[#D71920]/45" />
+                    <div className="mt-7">
+                      <h3 className="text-lg font-bold tracking-[-.025em]">{title}</h3>
+                      <p className="mt-2 text-xs leading-6 text-white/55">{text}</p>
+                    </div>
                   </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-12 border-t border-white/15 pt-9">
+              <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+                <div>
+                  <p className="text-[10px] font-extrabold uppercase tracking-[.25em] text-[#FF5358]">SETELAH PEMBELIAN</p>
+                  <h3 className="mt-2 text-2xl font-black uppercase tracking-[-.04em] sm:text-3xl">Kenali dukungan purnajual.</h3>
+                </div>
+                <p className="max-w-md text-xs leading-6 text-white/50">Ketersediaan layanan, lokasi, dan ketentuan servis perlu dikonfirmasi sesuai unit serta wilayah Anda.</p>
+              </div>
+              <div className="grid gap-3 md:grid-cols-3">
+                {[
+                  { title: 'Servis & Perawatan', desc: 'Diskusikan kebutuhan perawatan berkala dan informasi layanan bengkel yang sesuai.', Icon: Wrench, message: 'saya ingin informasi servis dan perawatan kendaraan Isuzu.' },
+                  { title: 'Suku Cadang', desc: 'Tanyakan jalur informasi suku cadang sesuai model dan kebutuhan kendaraan.', Icon: ShieldCheck, message: 'saya ingin informasi suku cadang untuk kendaraan Isuzu.' },
+                  { title: 'Konsultasi Unit & Armada', desc: 'Dapatkan arahan pemilihan unit untuk rencana usaha maupun pengadaan armada.', Icon: MessageCircle, message: 'saya ingin konsultasi kebutuhan unit dan armada Isuzu.' },
+                ].map(({ title, desc, Icon, message }) => (
+                  <button key={title} type="button" onClick={() => chat(message)} className="group flex flex-col justify-between gap-8 border border-white/15 bg-white/[.055] p-6 text-left transition hover:border-[#EF2B31]/70 hover:bg-white/[.09] sm:p-7 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+                    <div>
+                      <Icon size={25} strokeWidth={1.6} className="text-[#FF5358]" />
+                      <h4 className="mt-5 text-lg font-bold tracking-[-.02em]">{title}</h4>
+                      <p className="mt-2 max-w-sm text-xs leading-6 text-white/55">{desc}</p>
+                    </div>
+                    <span className="inline-flex items-center justify-between border-t border-white/15 pt-4 text-[11px] font-extrabold uppercase tracking-[.1em] text-white/85">Tanya via WhatsApp <ArrowUpRight size={17} className="text-[#FF5358] transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" /></span>
+                  </button>
                 ))}
               </div>
             </div>
