@@ -390,96 +390,57 @@ export default function HomeClient() {
           </div>
         </section>
 
-        <section id="solutions" className="scroll-mt-16 bg-[radial-gradient(circle_at_6%_10%,rgba(215,25,32,.055),transparent_26rem),linear-gradient(180deg,#f1f2ef_0%,#eceeea_100%)] px-5 py-5 text-[#202225] sm:px-7 sm:py-6 lg:px-10 lg:py-6">
+        <section id="solutions" className="scroll-mt-20 bg-[#f6f7f8] px-5 py-20 text-[#18212c] sm:px-7 lg:px-10 lg:py-24">
           <div className="mx-auto max-w-[1440px]">
-            <div className="grid gap-6 lg:grid-cols-[1fr_.78fr] lg:items-end">
+            <div className="mb-10 grid gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(280px,.65fr)] lg:items-end">
               <div>
-                <p className="text-[10px] font-extrabold uppercase tracking-[.3em] text-[#EF2B31]">Business Solutions</p>
-                <h2 className="mt-4 max-w-4xl text-[clamp(2.8rem,6vw,6.4rem)] font-semibold leading-[.9] tracking-[-.06em]">Apa yang bisnis<br /><span className="text-[#202225]/34">Anda butuhkan?</span></h2>
+                <p className="inline-flex items-center gap-3 text-[11px] font-black uppercase tracking-[.24em] text-[#D71920]"><span className="h-[3px] w-10 bg-[#D71920]" /> SOLUSI BISNIS</p>
+                <h2 className="mt-5 max-w-4xl text-[clamp(2.5rem,5.2vw,5.5rem)] font-black uppercase leading-[.98] tracking-[-.055em]">Armada tepat untuk <span className="text-[#D71920]">setiap industri.</span></h2>
               </div>
-              <p className="max-w-xl text-sm leading-7 text-[#202225]/56 lg:justify-self-end">Mulai dari aktivitas kerja, bukan nama model. Pilih kebutuhan bisnis Anda untuk menemukan keluarga kendaraan Isuzu yang paling relevan untuk dibandingkan.</p>
+              <p className="max-w-lg text-sm leading-7 text-[#65717b]">Setiap usaha punya kebutuhan berbeda. Pilih industri Anda, lalu lihat pilihan kendaraan Isuzu yang sesuai untuk dibandingkan.</p>
             </div>
 
-            <div className="mt-4 grid auto-rows-[220px] gap-2 sm:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[210px]">
+            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
               {needs.map((need, index) => {
                 const product = products.find((item) => item.slug === need.productSlug) ?? products[0];
-                const visualProduct = lineupProducts.find((item) => item.slug === need.visualSlug)
-                  ?? products.find((item) => item.slug === need.productSlug)
-                  ?? products[0];
-                const isFeatureCard = need.span.includes('row-span-2');
-                const isWideCard = !isFeatureCard && need.span.includes('col-span-2');
-                const copyWidthClass = isFeatureCard
-                  ? 'max-w-[52%] sm:max-w-[50%]'
-                  : isWideCard
-                    ? 'max-w-[56%] sm:max-w-[58%]'
-                    : 'max-w-[60%] sm:max-w-[58%]';
-                const visualShellClass = isFeatureCard
-                  ? 'h-[190px] w-[50%] min-w-[230px] sm:h-[232px]'
-                  : isWideCard
-                    ? 'h-[152px] w-[36%] min-w-[172px]'
-                    : 'h-[122px] w-[46%] min-w-[126px] sm:h-[134px]';
-                const visualInsetClass = isFeatureCard
-                  ? 'right-4 bottom-4 sm:right-6 sm:bottom-6'
-                  : 'right-3 bottom-3 sm:right-4 sm:bottom-4';
-
                 return (
                   <button
                     key={need.title}
+                    type="button"
                     onClick={() => chooseNeed(need.title, need.productSlug)}
-                    className={`premium-lift sheen-card group relative overflow-hidden border border-[#202225]/10 bg-[#F3F4F1] text-left text-[#202225] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_36px_rgba(24,24,24,.08)] ${need.span}`}
+                    aria-label={`Lihat rekomendasi Isuzu untuk ${need.title}`}
+                    className="group relative flex min-h-[320px] flex-col justify-end overflow-hidden rounded-[3px] bg-[#1c2732] text-left text-white shadow-[0_12px_26px_rgba(18,32,46,.10)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_48px_rgba(18,32,46,.20)] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-[#D71920] sm:min-h-[350px]"
                   >
-                    <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#f8f8f5_0%,#f2f3ef_100%)]" />
-                    <div className="pointer-events-none absolute inset-x-0 top-0 h-[44%] overflow-hidden">
-                      <Image
-                        src={need.sceneSrc}
-                        alt={need.sceneAlt}
-                        fill
-                        sizes="(min-width:1024px) 25vw, (min-width:640px) 50vw, 100vw"
-                        className="object-cover opacity-[.98] transition duration-700 group-hover:scale-[1.04]"
-                        style={{ objectPosition: need.scenePosition }}
-                        priority={index < 2}
-                      />
-                      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,22,24,.18)_0%,rgba(20,22,24,.06)_34%,rgba(243,244,241,.18)_100%)]" />
+                    <Image
+                      src={need.sceneSrc}
+                      alt=""
+                      fill
+                      sizes="(min-width:1280px) 33vw, (min-width:640px) 50vw, 100vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-[1.07]"
+                      style={{ objectPosition: need.scenePosition }}
+                      aria-hidden="true"
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(10,19,29,.24)_0%,rgba(10,19,29,.10)_30%,rgba(10,19,29,.87)_100%)]" />
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-[#D71920] transition-transform duration-300 group-hover:scale-x-100" />
+                    <div className="absolute left-6 top-6 flex items-center gap-2 border border-white/25 bg-black/25 px-3 py-2 text-[10px] font-bold uppercase tracking-[.13em] backdrop-blur-sm">
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#F02A32]" /> {need.kicker}
                     </div>
-                    <div className="pointer-events-none absolute inset-x-0 top-[44%] h-px bg-[#202225]/8" />
-                    <div className="pointer-events-none absolute right-[-3%] top-[28%] h-24 w-24 rounded-full bg-[#D71920]/[.14] blur-3xl" />
-                    <div className="pointer-events-none absolute left-4 top-4 z-20 flex items-center gap-2 rounded-full border border-white/75 bg-white/55 px-3 py-1 text-[8px] font-extrabold uppercase tracking-[.16em] text-[#202225]/70 shadow-[0_8px_24px_rgba(20,22,24,.10),inset_0_1px_0_rgba(255,255,255,.86)] backdrop-blur-xl backdrop-saturate-150 sm:left-5 sm:top-5">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#D71920]" />
-                      {need.kicker}
-                    </div>
-                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[60%] bg-[linear-gradient(180deg,rgba(243,244,241,.06)_0%,rgba(243,244,241,.84)_18%,rgba(243,244,241,.98)_42%,rgba(243,244,241,1)_100%)]" />
-                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1 bg-[linear-gradient(90deg,#D71920_0%,#EF2B31_45%,rgba(239,43,49,.14)_100%)] opacity-90" />
-
-                    <div className={`pointer-events-none absolute z-10 ${visualInsetClass} ${visualShellClass}`}>
-                      <div className="absolute inset-x-[16%] bottom-0 h-4 rounded-[50%] bg-[#202225]/14 blur-xl sm:h-5" />
-                      <Image
-                        src={visualProduct.image}
-                        alt={need.visualAlt}
-                        fill
-                        sizes="(min-width:1024px) 25vw, (min-width:640px) 50vw, 100vw"
-                        className="object-contain drop-shadow-[0_16px_22px_rgba(20,22,24,.16)] transition duration-700 group-hover:translate-y-[-3px] group-hover:scale-[1.055]"
-                        style={{ objectPosition: need.visualPosition }}
-                      />
-                    </div>
-
-                    <div className="relative z-20 flex h-full flex-col justify-between p-5 sm:p-6">
-                      <div className="flex items-start justify-between gap-4">
-                        <span className="text-[9px] font-extrabold uppercase tracking-[.22em] text-[#202225]/34">0{index + 1}</span>
-                        <ArrowUpRight size={18} className="text-[#202225]/32 transition group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-[#D71920]" />
-                      </div>
-                      <div className={`mt-auto ${copyWidthClass}`}>
-                        <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/52 px-3 py-1 text-[8px] font-extrabold uppercase tracking-[.16em] text-[#202225]/70 shadow-[0_8px_22px_rgba(20,22,24,.09),inset_0_1px_0_rgba(255,255,255,.88)] backdrop-blur-xl backdrop-saturate-150">
-                          <span className="h-1.5 w-1.5 rounded-full bg-[#D71920]" />
-                          {visualProduct.shortName}
-                        </div>
-                        <h3 className={`font-semibold leading-[.95] tracking-[-.04em] ${isFeatureCard ? 'text-[clamp(2.1rem,4vw,3.4rem)]' : 'text-xl sm:text-[1.7rem]'}`}>{need.title}</h3>
-                        <p className="mt-3 max-w-md text-xs leading-6 text-[#202225]/56 sm:text-[13px]">{need.text}</p>
-                        <p className="mt-4 text-[10px] font-bold uppercase tracking-[.16em] text-[#202225]/38">Rekomendasi: {product.shortName}</p>
+                    <div className="absolute right-6 top-6 text-[11px] font-black tracking-[.2em] text-white/70">0{index + 1}</div>
+                    <div className="relative z-10 p-6 sm:p-7">
+                      <h3 className="max-w-[95%] text-[clamp(1.65rem,2.5vw,2.3rem)] font-black uppercase leading-[1.04] tracking-[-.035em]">{need.title}</h3>
+                      <p className="mt-3 max-w-sm text-[13px] leading-6 text-white/85">{need.text}</p>
+                      <div className="mt-6 flex items-center justify-between gap-3 border-t border-white/30 pt-4">
+                        <span className="text-[10px] font-bold uppercase tracking-[.13em] text-white/85">Rekomendasi: {product.shortName}</span>
+                        <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center border border-white/45 bg-white/10 transition-colors group-hover:border-[#D71920] group-hover:bg-[#D71920]"><ArrowUpRight size={18} /></span>
                       </div>
                     </div>
                   </button>
                 );
               })}
+            </div>
+            <div className="mt-8 flex flex-wrap items-center justify-between gap-5 border-l-4 border-[#D71920] bg-white px-6 py-5 shadow-[0_9px_24px_rgba(18,32,46,.04)] sm:px-8">
+              <p className="max-w-xl text-sm leading-6 text-[#56616c]">Belum yakin memilih armada? Konsultasikan rute, muatan, dan kebutuhan operasional bersama tim penjualan.</p>
+              <button type="button" onClick={() => chat('saya ingin konsultasi pilihan kendaraan Isuzu untuk kebutuhan bisnis saya.')} className="inline-flex min-h-11 items-center justify-center gap-2 bg-[#D71920] px-6 py-3 text-xs font-extrabold uppercase tracking-[.08em] text-white transition hover:bg-[#B81016] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D71920]"><MessageCircle size={17} /> Konsultasi Armada <ArrowRight size={16} /></button>
             </div>
           </div>
         </section>
