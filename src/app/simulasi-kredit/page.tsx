@@ -6,13 +6,27 @@ import Footer from '@/components/Footer';
 import { products } from '@/lib/products-data';
 import { getProductPriceEntries } from '@/lib/pricing-data';
 import { openWhatsApp } from '@/lib/whatsapp';
-import { Calculator, MessageCircle, Info, Copy, Check, Lock, Unlock } from 'lucide-react';
+import leasingData from '@/data/leasingData.json';
+import { Calculator, MessageCircle, Info, Copy, Check } from 'lucide-react';
 
 type PaymentType = 'ADDM' | 'ADDB';
 type Option = { name: string; price: number | null; note?: string };
 const money = (n: number) => `Rp${new Intl.NumberFormat('id-ID').format(Math.round(n))}`;
 const digits = (n: number) => n > 0 ? new Intl.NumberFormat('id-ID').format(n) : '';
 const numberInput = (s: string) => Number(s.replace(/[^0-9]/g, '')) || 0;
+
+// Same OJK Region 3 combination-insurance calculation as the Suzuki source.
+function hitungAsuransiKombi(otr: number, tahun: number): number {
+  let total = 0;
+  const depreciation = leasingData.depreciation as Record<string, number>;
+  for (let i = 1; i <= tahun; i++) {
+    const nilai = otr * (depreciation[String(i)] || 0.5);
+    const rate = leasingData.ojkWil3.find(r => nilai > r.minOtr && nilai <= r.maxOtr);
+    if (rate) total += nilai * (i === 1 ? rate.allRisk : rate.tlo);
+  }
+  return total + leasingData.flatFeePerYear * tahun;
+}
+
 
 // Katalog varian dan daftar harga adalah data yang berbeda. Jangan menganggap
 // varian katalog berharga sama hanya karena nama keluarga produknya sama.
@@ -38,15 +52,12 @@ export default function CreditSimulatorPage() {
   const [paymentType, setPaymentType] = useState<PaymentType>('ADDB');
   const [hargaMobil, setHargaMobil] = useState(0);
   const [dpBayar, setDpBayar] = useState(0);
-  const [diskon, setDiskon] = useState(0);
-  const [uping, setUping] = useState(1);
+  const diskon = 0;
+  const uping = 1;
   const [tenor, setTenor] = useState(60);
-  const [bungaDasar, setBungaDasar] = useState('');
-  const [biayaFidusia, setBiayaFidusia] = useState(503000);
-  const [biayaAdminPH, setBiayaAdminPH] = useState(6300000);
-  const [provisiPct, setProvisiPct] = useState(1);
-  const [asuransi, setAsuransi] = useState(0);
-  const [showAdvanced, setShowAdvanced] = useState(false);
+  const biayaFidusia = 503000;
+  const biayaAdminPH = 6300000;
+  const provisiPct = 1;
   const [isCopied, setIsCopied] = useState(false);
 
   const currentCar = products.find(c => c.slug === selectedSlug) ?? products[0];
@@ -57,19 +68,20 @@ export default function CreditSimulatorPage() {
   // Reset hanya ketika unit/varian berubah.
   useEffect(() => {
     setHargaMobil(currentVariant?.price ?? 0);
-    setDiskon(0); // Tidak ada diskon varian terverifikasi pada pricelist.
     setDpBayar(currentVariant?.price ? Math.round(currentVariant.price * 0.2) : 0);
   }, [selectedSlug, selectedVariantIndex, currentVariant?.price]);
 
-  const rate = bungaDasar.trim() === '' ? null : Number(bungaDasar);
-  // File sumber menggunakan bunga Suzuki Carry +2 poin persentase.
-  // Digunakan sebagai asumsi penghitungan, bukan klaim penawaran leasing Isuzu.
-  const effectiveRate = rate !== null && Number.isFinite(rate) && rate >= 0
-    ? rate + 2 + uping : null;
+  const years = tenor / 12;
+  const rates = leasingData.interestRates as Record<string, Record<string, number>>;
+  const rateKey = paymentType === 'ADDM' ? 'PASS_DP_RINGAN_ADDM' : 'PASS_DP_RINGAN_ADDB';
+  const rateDasar = rates[rateKey]?.[String(years)];
+  // Suzuki's Carry branch: base PASS rate + 2 percentage points.
+  const effectiveRate = rateDasar === undefined ? null : rateDasar + 2 + uping;
+  const asuransi = hargaMobil > 0 ? hitungAsuransiKombi(hargaMobil, years) : 0;
   const dpGross = dpBayar + diskon;
   const dpPct = hargaMobil > 0 ? dpGross / hargaMobil * 100 : 0;
   const valid = hargaMobil > 0 && effectiveRate !== null && dpGross >= hargaMobil * 0.15
-    && dpGross < hargaMobil && biayaFidusia >= 0 && biayaAdminPH >= 0 && asuransi >= 0 && provisiPct >= 0;
+    && dpGross < hargaMobil && biayaFidusia >= 0 && biayaAdminPH >= 0;
 
   const result = useMemo(() => {
     if (!valid || effectiveRate === null) return null;
@@ -96,7 +108,7 @@ export default function CreditSimulatorPage() {
     return { cicilan, uangMukaAsli, pokokUtang: pokok * (1 + provisi) + asuransi + biayaAdminPH, tdpKotor: dpGross };
   }, [valid, effectiveRate, hargaMobil, dpGross, tenor, paymentType, provisiPct, asuransi, biayaAdminPH, biayaFidusia]);
 
-  const summary = `SIMULASI KREDIT ISUZU (ESTIMASI)\nUnit: ${currentCar?.name ?? 'Isuzu'}\nVarian: ${currentVariant?.name ?? '-'}\nHarga OTR: ${hargaMobil ? money(hargaMobil) : 'Belum diisi'}\nDP Bayar: ${money(dpBayar)}\nSubsidi: ${money(diskon)}\nSkema: ${paymentType}\nTenor: ${tenor} bulan\nBunga dasar input: ${rate === null ? 'Belum diisi' : `${rate}%`}\nAsumsi Carry +2 pp, penyesuaian ${uping}%\nEstimasi Angsuran: ${result ? `${money(result.cicilan)}/bulan` : 'Belum dapat dihitung'}\nCatatan: hitungan indikatif, bukan penawaran final leasing. Mohon konfirmasi rate, OTR, asuransi, dan biaya.`;
+  const summary = `SIMULASI KREDIT ISUZU (ESTIMASI)\nUnit: ${currentCar?.name ?? 'Isuzu'}\nVarian: ${currentVariant?.name ?? '-'}\nHarga OTR: ${hargaMobil ? money(hargaMobil) : 'Belum diisi'}\nDP Bayar: ${money(dpBayar)}\nSubsidi: ${money(diskon)}\nSkema: ${paymentType}\nTenor: ${tenor} bulan\nBunga dasar PASS: ${rateDasar === undefined ? '-' : `${rateDasar}%`}\nRate Suzuki Carry (+2 pp), upping ${uping}%\nEstimasi Angsuran: ${result ? `${money(result.cicilan)}/bulan` : 'Belum dapat dihitung'}\nCatatan: hitungan indikatif, bukan penawaran final leasing. Mohon konfirmasi rate, OTR, asuransi, dan biaya.`;
 
   async function copy() {
     try { await navigator.clipboard.writeText(summary); setIsCopied(true); window.setTimeout(() => setIsCopied(false), 2000); }
@@ -144,16 +156,11 @@ export default function CreditSimulatorPage() {
                 {([['Harga OTR', money(hargaMobil)],['DP Bayar',money(dpBayar)],['+ Subsidi Dealer',money(diskon)],['= Total DP (TDP)',money(dpGross)],['Pokok Utang + Biaya',result ? money(result.pokokUtang) : '—']] as const).map(([label,value]) => <div key={label} className="flex justify-between gap-3 border-b border-gray-200 py-2"><span className={`text-[10px] font-bold uppercase tracking-wider ${label === 'DP Bayar' ? 'text-red-600' : 'text-gray-500'}`}>{label}</span><span className="text-right text-xs font-black text-gray-900">{value}</span></div>)}
               </div>
               <div className="mb-6"><label className={`${labelClass} mb-4`}>Jangka Waktu</label><div className="grid grid-cols-5 gap-2">{[12,24,36,48,60].map(t => <button key={t} type="button" onClick={() => setTenor(t)} className={`border py-3 text-xs font-black ${tenor === t ? 'border-gray-900 bg-gray-900 text-white' : 'border-gray-200 bg-white text-gray-500'}`}>{t/12} THN</button>)}</div></div>
-              <div className="mb-6 rounded border border-amber-200 bg-amber-50 p-4">
-                <label className="mb-2 block text-xs font-black uppercase tracking-wider text-gray-800">Bunga dasar Carry Pick Up (% flat/tahun)</label>
-                <input type="number" step="0.01" min="0" value={bungaDasar} onChange={e => setBungaDasar(e.target.value)} placeholder="Isi rate dari tabel leasing" className="w-full border-b-2 border-amber-300 bg-transparent py-2 text-lg font-black outline-none"/>
-                <p className="mt-2 text-xs leading-5 text-amber-900">Penyesuaian dari file contoh: +2 poin persentase; upping tambahan {uping.toFixed(1)}%. {effectiveRate === null ? 'Isi bunga dasar untuk menampilkan estimasi.' : `Total asumsi bunga: ${effectiveRate.toFixed(2)}% flat/tahun.`}</p>
+              <div className="mb-6 border-l-4 border-red-600 bg-red-50 p-4 text-xs font-semibold leading-5 text-gray-700">
+                Skema rate Suzuki Carry: {rateDasar?.toFixed(2) ?? '—'}% + 2 poin Carry + {uping.toFixed(1)}% upping = <strong>{effectiveRate?.toFixed(2) ?? '—'}% flat/tahun</strong>.
+                Asuransi kombinasi otomatis {money(asuransi)}.
               </div>
-              <div className="mb-6 flex-grow">
-                <button type="button" className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-gray-500" onClick={() => setShowAdvanced(!showAdvanced)}>{showAdvanced ? <Unlock size={13}/> : <Lock size={13}/>} {showAdvanced ? 'Tutup Pengaturan Lanjutan' : 'Buka Pengaturan Lanjutan'}</button>
-                {showAdvanced && <div className="mt-4 space-y-5 border border-gray-200 bg-white p-4"><p className="text-xs font-bold text-gray-900">Pengaturan Advanced</p><div><label className={labelClass}>Upping (%) : {uping.toFixed(1)}%</label><input type="range" min="-2" max="5" step="0.1" value={uping} onChange={e => setUping(Number(e.target.value))} className="w-full accent-gray-900"/></div>{([['Diskon / Subsidi',diskon,setDiskon],['Biaya Fidusia',biayaFidusia,setBiayaFidusia],['Biaya Admin',biayaAdminPH,setBiayaAdminPH],['Premi Asuransi',asuransi,setAsuransi]] as const).map(([label,value,setter]) => <div key={label}><label className={labelClass}>{label}</label><input className={inputClass} type="text" inputMode="numeric" value={digits(value)} onChange={e => setter(numberInput(e.target.value))}/></div>)}<div><label className={labelClass}>Provisi (%)</label><input className={inputClass} type="number" step="0.1" min="0" value={provisiPct} onChange={e => setProvisiPct(Number(e.target.value))}/></div></div>}
-              </div>
-              <div className="mt-auto"><div className="mb-6 flex gap-3 border-l-4 border-gray-900 bg-gray-200/50 p-4 text-gray-600"><Info size={16} className="mt-0.5 shrink-0"/><p className="text-[10px] font-bold leading-relaxed">Hitungan estimasi, bukan penawaran leasing. Rate Carry +2 poin mengikuti logika file contoh; tabel rate aktual, premi asuransi, biaya fidusia dan administrasi perlu diverifikasi. {paymentType === 'ADDM' ? 'Skema ADDM memasukkan angsuran pertama dalam DP.' : 'Skema ADDB menggunakan angsuran dibayar di belakang.'}</p></div><div className="flex gap-3"><button type="button" onClick={copy} className="flex items-center justify-center gap-2 border-2 border-gray-200 px-5 py-4 text-xs font-black uppercase text-gray-700"><span>{isCopied ? <Check size={18}/> : <Copy size={18}/>}</span><span className="hidden sm:inline">{isCopied ? 'Tersalin':'Salin'}</span></button><button type="button" onClick={() => openWhatsApp(`Halo Mas Yusuf, saya ingin konsultasi pembiayaan Isuzu:\n${summary}`)} className="flex flex-1 items-center justify-center gap-2 bg-[#25D366] px-4 py-4 text-xs font-black uppercase tracking-wider text-white hover:bg-[#1ebe5d]"><MessageCircle size={18}/> Kirim ke WhatsApp</button></div></div>
+              <div className="mt-auto"><div className="mb-6 flex gap-3 border-l-4 border-gray-900 bg-gray-200/50 p-4 text-gray-600"><Info size={16} className="mt-0.5 shrink-0"/><p className="text-[10px] font-bold leading-relaxed">Hitungan estimasi, bukan penawaran leasing. Rate Suzuki Carry dihitung otomatis dari tabel sumber dengan +2 poin; tarif aktual dari leasing dapat berbeda. {paymentType === 'ADDM' ? 'Skema ADDM memasukkan angsuran pertama dalam DP.' : 'Skema ADDB menggunakan angsuran dibayar di belakang.'}</p></div><div className="flex gap-3"><button type="button" onClick={copy} className="flex items-center justify-center gap-2 border-2 border-gray-200 px-5 py-4 text-xs font-black uppercase text-gray-700"><span>{isCopied ? <Check size={18}/> : <Copy size={18}/>}</span><span className="hidden sm:inline">{isCopied ? 'Tersalin':'Salin'}</span></button><button type="button" onClick={() => openWhatsApp(`Halo Mas Yusuf, saya ingin konsultasi pembiayaan Isuzu:\n${summary}`)} className="flex flex-1 items-center justify-center gap-2 bg-[#25D366] px-4 py-4 text-xs font-black uppercase tracking-wider text-white hover:bg-[#1ebe5d]"><MessageCircle size={18}/> Kirim ke WhatsApp</button></div></div>
             </div>
           </div>
         </div>
