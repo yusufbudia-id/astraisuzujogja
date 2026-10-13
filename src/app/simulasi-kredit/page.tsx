@@ -35,14 +35,14 @@ export default function Credit() {
       <Header />
 
       <main>
-        <section className="relative overflow-hidden bg-[#24211E] px-5 pb-14 pt-32 text-white sm:px-7 lg:px-10 lg:pb-18">
+        <section className="relative overflow-hidden bg-[#111b27] px-5 pb-16 pt-32 text-white sm:px-7 lg:px-10 lg:pb-18">
           <div className="absolute inset-x-0 bottom-0 h-px bg-white/10" />
           <div className="relative mx-auto max-w-[1440px]">
             <p className="text-[10px] font-extrabold uppercase tracking-[.28em] text-[#EF2B31]">Simulasi Pembiayaan</p>
             <div className="mt-5 grid gap-7 lg:grid-cols-[1.05fr_.95fr] lg:items-end">
-              <h1 className="max-w-3xl text-5xl font-semibold leading-[.96] tracking-[-.05em] sm:text-6xl">Mulai dari unit yang benar-benar Anda butuhkan.</h1>
+              <h1 className="max-w-3xl text-[clamp(2.8rem,5vw,5.2rem)] font-black uppercase leading-[.98] tracking-[-.05em]">Simulasi pembiayaan. <span className="text-white/45">Sesuai rencana Anda.</span></h1>
               <p className="max-w-xl text-sm leading-7 text-white/60 lg:justify-self-end">
-                Pilih keluarga produk, varian, rencana uang muka, dan tenor. Yusuf akan menyiapkan simulasi berdasarkan program leasing dan harga yang berlaku saat pengajuan.
+                Pilih unit, varian, DP, dan tenor. Konsultan penjualan akan membantu menyiapkan penawaran berdasarkan harga dan ketentuan leasing yang berlaku.
               </p>
             </div>
           </div>
@@ -78,7 +78,7 @@ export default function Credit() {
             </div>
           </div>
 
-          <form onSubmit={submit} className="border border-[#202225]/12 bg-[#F1F2EF] p-6 shadow-[0_24px_70px_rgba(11,28,44,.06)] sm:p-8 lg:p-9">
+          <form onSubmit={submit} className="border border-[#202225]/12 bg-white p-6 shadow-[0_24px_70px_rgba(11,28,44,.09)] sm:p-8 lg:p-9">
             <div>
               <div className="text-[10px] font-extrabold uppercase tracking-[.22em] text-[#D71920]">01 / Keluarga Produk</div>
               <div className="mt-3 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
@@ -91,7 +91,7 @@ export default function Credit() {
                       onClick={() => changeProduct(product.slug)}
                       className={`border px-4 py-4 text-left transition ${active ? 'border-[#D71920] bg-[#D71920] text-white' : 'border-[#202225]/12 bg-[#FBF8F3] hover:border-[#D71920]'}`}
                     >
-                      <div className={`text-[9px] font-extrabold uppercase tracking-[.16em] ${active ? 'text-[#EF2B31]' : 'text-[#D71920]'}`}>{product.category}</div>
+                      <div className={`text-[9px] font-extrabold uppercase tracking-[.16em] ${active ? 'text-white/70' : 'text-[#D71920]'}`}>{product.category}</div>
                       <div className="mt-1 text-lg font-semibold">{product.shortName}</div>
                       <div className={`mt-1 text-[11px] ${active ? 'text-white/55' : 'text-[#202225]/45'}`}>{product.variants.length} varian</div>
                     </button>
@@ -125,7 +125,7 @@ export default function Credit() {
               <button className="mt-6 flex w-full items-center justify-center gap-2 bg-[#D71920] px-6 py-4 text-sm font-black text-white transition hover:bg-[#B81016]">
                 <MessageCircle size={18} /> Minta Simulasi via WhatsApp <ArrowRight size={16} />
               </button>
-              <p className="mt-4 text-center text-[11px] leading-5 text-[#202225]/45">Tidak ada biaya untuk meminta simulasi awal. Nilai final mengikuti quotation leasing.</p>
+              <p className="mt-4 text-center text-[11px] leading-5 text-[#202225]/45">Ini permintaan penawaran, bukan persetujuan kredit. Nilai cicilan, DP akhir, bunga, biaya, dan ketersediaan program akan dikonfirmasi melalui quotation resmi leasing.</p>
             </div>
           </form>
         </section>

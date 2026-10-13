@@ -580,16 +580,31 @@ export default function HomeClient() {
           </div>
         </section>
 
-        <section id="promo" className="promo-energy scroll-mt-16 overflow-hidden text-white">
-          <div className="mx-auto grid min-h-[220px] max-w-[1440px] lg:grid-cols-[1fr_auto] lg:items-center">
-            <div className="px-5 py-5 sm:px-7 sm:py-6 lg:px-10 lg:py-6">
-              <p className="text-[10px] font-extrabold uppercase tracking-[.3em] text-white/58">Program Pembelian Isuzu</p>
-              <h2 className="mt-4 max-w-4xl text-[clamp(2.5rem,5vw,5rem)] font-semibold leading-[.9] tracking-[-.06em]">Rencanakan kendaraan.<br /><span className="text-white/48">Bukan sekadar cicilan.</span></h2>
-              <p className="mt-6 max-w-2xl text-sm leading-7 text-white/67">Tanyakan harga OTR, DP, tenor, program penjualan, dan skenario pembiayaan berdasarkan unit yang benar-benar Anda butuhkan.</p>
+        <section id="promo" className="relative scroll-mt-20 overflow-hidden bg-[#111b27] px-5 py-20 text-white sm:px-7 lg:px-10 lg:py-24">
+          <div className="pointer-events-none absolute -right-28 -top-40 h-[520px] w-[520px] rounded-full border-[100px] border-[#D71920]/10" />
+          <div className="pointer-events-none absolute bottom-0 right-0 h-[3px] w-1/3 bg-[#D71920]" />
+          <div className="relative mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
+            <div>
+              <p className="flex items-center gap-3 text-[11px] font-black uppercase tracking-[.24em] text-[#FF6A70]"><span className="h-[3px] w-10 bg-[#D71920]" /> PROGRAM PEMBELIAN ISUZU</p>
+              <h2 className="mt-6 max-w-3xl text-[clamp(2.8rem,5.1vw,5.6rem)] font-black uppercase leading-[.98] tracking-[-.05em]">Rencanakan armada.<br /><span className="text-white/45">Sesuaikan anggaran.</span></h2>
+              <p className="mt-6 max-w-xl text-sm leading-7 text-white/65">Cari unit yang cocok, diskusikan harga OTR Yogyakarta, dan ajukan simulasi pembiayaan sesuai kebutuhan bisnis. Penawaran mengikuti ketersediaan dan ketentuan yang berlaku.</p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link href="/simulasi-kredit" className="inline-flex min-h-12 items-center justify-center gap-3 bg-[#D71920] px-6 py-3 text-xs font-extrabold uppercase tracking-[.07em] text-white transition hover:bg-[#B81016] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Simulasi Pembiayaan <ArrowUpRight size={17} /></Link>
+                <button type="button" onClick={() => chat('saya ingin mengetahui harga OTR dan program pembelian Isuzu terbaru di Yogyakarta.')} className="inline-flex min-h-12 items-center justify-center gap-3 border border-white/35 px-6 py-3 text-xs font-extrabold uppercase tracking-[.07em] text-white transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"><MessageCircle size={17} /> Tanya Promo</button>
+              </div>
             </div>
-            <div className="flex gap-2 px-5 pb-5 sm:px-7 lg:flex-col lg:px-10 lg:pb-0">
-              <button onClick={() => chat('saya ingin cek promo Isuzu terbaru dan harga OTR Yogyakarta.')} className="inline-flex min-w-[170px] items-center justify-between gap-4 bg-white px-5 py-4 text-xs font-extrabold text-[#B81016] transition hover:bg-[#F3F0EA]">Cek Program <ArrowRight size={15} /></button>
-              <Link href="/simulasi-kredit" className="inline-flex min-w-[170px] items-center justify-between gap-4 border border-white/42 px-5 py-4 text-xs font-extrabold text-white transition hover:bg-white/10">Simulasi <ArrowRight size={15} /></Link>
+            <div className="border border-white/10 bg-white/[.055] p-5 sm:p-7">
+              <div className="flex items-center justify-between border-b border-white/15 pb-5"><p className="text-[11px] font-black uppercase tracking-[.18em] text-white/80">Alur Pembelian</p><span className="text-[10px] font-bold text-[#FF6A70]">01 — 03</span></div>
+              {([
+                ['01', 'Pilih kendaraan', 'Bandingkan unit dan varian sesuai kebutuhan operasional.'],
+                ['02', 'Tentukan rencana', 'Pilih preferensi DP dan tenor untuk permintaan simulasi.'],
+                ['03', 'Terima penawaran', 'Konsultasikan harga, promo, dan rincian leasing melalui WhatsApp.'],
+              ] as const).map(([number, title, description]) => (
+                <div key={number} className="grid grid-cols-[44px_1fr] gap-3 border-b border-white/10 py-5 last:border-0 last:pb-0">
+                  <span className="text-lg font-black text-[#FF6A70]">{number}</span>
+                  <div><h3 className="text-base font-extrabold">{title}</h3><p className="mt-1.5 text-xs leading-6 text-white/55">{description}</p></div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
