@@ -170,40 +170,45 @@ export default function HomeClient() {
       <Header />
 
       <main>
-        <section id="home" className="relative isolate min-h-[680px] overflow-hidden bg-[#111b28] text-white lg:min-h-[740px]">
-          <Image
-            src="/images/isuzu/hero/isuzu-city-lineup.png"
-            alt="Deretan truk Isuzu ELF, GIGA, dan TRAGA dengan latar kota saat matahari terbenam"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-[57%_center] lg:object-center"
-          />
-          {/* A subtle left gradient keeps text legible without hiding vehicle details. */}
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(8,19,35,.87)_0%,rgba(8,19,35,.65)_26%,rgba(8,19,35,.14)_53%,transparent_78%)] max-lg:bg-[linear-gradient(90deg,rgba(8,19,35,.88)_0%,rgba(8,19,35,.64)_44%,rgba(8,19,35,.06)_100%)]" />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#081323]/65 to-transparent" />
+        {/* Tahap 8: on small screens display the whole truck image separately from the text. */}
+        <section id="home" aria-labelledby="hero-title" className="relative isolate overflow-hidden bg-[#0b1726] text-white lg:min-h-[740px]">
+          {/* Mobile: no image cropping; desktop: full-bleed photographic background. */}
+          <div className="relative mt-[87px] aspect-[16/9] w-full overflow-hidden sm:mt-[87px] lg:absolute lg:inset-0 lg:mt-0 lg:aspect-auto">
+            <Image
+              src="/images/isuzu/hero/isuzu-city-lineup.png"
+              alt="Tiga kendaraan Isuzu dengan tulisan ELF, GIGA, dan TRAGA di depan gedung kota saat senja"
+              fill
+              priority
+              quality={85}
+              sizes="100vw"
+              className="object-contain object-center lg:object-cover lg:object-center"
+            />
+          </div>
+          <div className="pointer-events-none absolute inset-0 hidden bg-[linear-gradient(90deg,rgba(8,19,35,.9)_0%,rgba(8,19,35,.76)_26%,rgba(8,19,35,.2)_56%,transparent_82%)] lg:block" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 hidden h-40 bg-gradient-to-t from-[#081323]/75 to-transparent lg:block" />
 
-          <div className="relative mx-auto flex min-h-[680px] max-w-[1440px] items-center px-5 pb-36 pt-28 sm:px-8 lg:min-h-[740px] lg:px-12 lg:pb-32 lg:pt-32">
-            <div className="max-w-[570px]">
-              <p className="mb-5 text-sm font-semibold uppercase tracking-[.16em] text-white sm:text-base">Astra Isuzu Jogja</p>
-              <h1 className="text-[clamp(2.8rem,5.2vw,5.7rem)] font-black uppercase leading-[.99] tracking-[-.045em] drop-shadow-[0_3px_18px_rgba(0,0,0,.2)]">
+          <div className="relative mx-auto flex max-w-[1440px] items-center px-5 pb-10 pt-8 sm:px-8 sm:pb-12 lg:min-h-[740px] lg:px-12 lg:pb-32 lg:pt-36">
+            <div className="w-full max-w-[570px]">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[.16em] text-white/85 sm:text-sm lg:mb-5 lg:text-base">Astra Isuzu Jogja</p>
+              <h1 id="hero-title" className="text-[clamp(2.35rem,9.5vw,4rem)] font-black uppercase leading-[1.02] tracking-[-.045em] drop-shadow-[0_3px_18px_rgba(0,0,0,.2)] sm:text-6xl lg:text-[clamp(3.3rem,5.2vw,5.7rem)] lg:leading-[.99]">
                 Real Partner<br />Real Journey
               </h1>
-              <div className="mt-6 h-[3px] w-20 bg-[#ed1c24]" />
-              <p className="mt-6 max-w-[450px] text-base leading-7 text-white/95 sm:text-lg sm:leading-8">
+              <div className="mt-5 h-[3px] w-16 bg-[#ed1c24] lg:mt-6 lg:w-20" />
+              <p className="mt-5 max-w-[450px] text-sm leading-6 text-white/90 sm:text-base sm:leading-7 lg:mt-6 lg:text-lg lg:leading-8">
                 Solusi kendaraan niaga yang tangguh, andal, dan siap mendukung setiap perjalanan bisnis Anda.
               </p>
-              <a href="#models" className="mt-8 inline-flex min-h-12 items-center justify-center gap-3 rounded-sm bg-[#e50914] px-7 py-4 text-sm font-extrabold uppercase tracking-[.03em] text-white shadow-[0_14px_32px_rgba(0,0,0,.18)] transition hover:bg-[#bd0710] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+              <a href="#models" className="mt-6 inline-flex min-h-12 items-center justify-center gap-3 rounded-sm bg-[#e50914] px-6 py-3 text-sm font-extrabold uppercase tracking-[.03em] text-white shadow-[0_14px_32px_rgba(0,0,0,.18)] transition hover:bg-[#bd0710] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white lg:mt-8 lg:px-7 lg:py-4">
                 Lihat Produk <ArrowRight size={18} />
               </a>
             </div>
           </div>
 
-          <div className="absolute inset-x-0 bottom-0 border-t border-white/20 bg-[#081323]/45 backdrop-blur-sm">
-            <div className="mx-auto flex max-w-[1440px] overflow-x-auto px-5 sm:px-8 lg:px-12">
+          <div className="relative border-t border-white/20 bg-[#081323] lg:absolute lg:inset-x-0 lg:bottom-0 lg:bg-[#081323]/60 lg:backdrop-blur-sm">
+            <div className="mx-auto flex max-w-[1440px] overflow-x-auto px-5 sm:px-8 lg:px-12" aria-label="Pilih keluarga kendaraan Isuzu">
               {products.map((product) => (
                 <button
                   key={product.slug}
+                  type="button"
                   onClick={() => {
                     setActiveSlug(representativeModelSlug(product.slug));
                     setActiveNeed(null);
