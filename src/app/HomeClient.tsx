@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Header from '@/components/Header';
+import ConsultationHomeSection from '@/components/ConsultationHomeSection';
 import Footer from '@/components/Footer';
 import { productFamilies, products as modelProducts } from '@/lib/products-data';
 import { articles } from '@/lib/articles-data';
@@ -223,6 +224,8 @@ export default function HomeClient() {
             </div>
           </div>
         </section>
+
+        <ConsultationHomeSection />
 
         {/* Tahap 2: curated four-family lineup, connected to the existing model selector below. */}
         <section aria-labelledby="featured-lineup-title" className="relative bg-[#f3f4f5] px-5 py-16 text-[#161c25] sm:px-8 lg:px-12 lg:py-24">
