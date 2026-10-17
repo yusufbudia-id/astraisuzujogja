@@ -7,6 +7,7 @@ import { openWhatsApp } from '@/lib/whatsapp';
 
 const nav = [
   ['Produk', '/produk'],
+  ['Konsultan Armada', '/konsultasi-armada'],
   ['Solusi Bisnis', '/#solutions'],
   ['Promo', '/promo'],
   ['Layanan', '/#services'],
