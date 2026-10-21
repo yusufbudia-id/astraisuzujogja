@@ -2,97 +2,144 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Menu, MessageCircle, X } from 'lucide-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { ArrowUpRight, ChevronRight, Menu, MessageCircle, X } from 'lucide-react';
 import { openWhatsApp } from '@/lib/whatsapp';
 
-const nav = [
-  ['Produk', '/produk'],
-  ['Solusi Bisnis', '/#solutions'],
-  ['Promo', '/promo'],
-  ['Layanan', '/#services'],
-  ['Kontak', '/kontak'],
+// Konsultasi Armada tetap berada di section beranda, bukan menu header.
+const navigation = [
+  { label: 'Beranda', href: '/' },
+  { label: 'Produk', href: '/produk' },
+  { label: 'Solusi Bisnis', href: '/#solutions' },
+  { label: 'Promo', href: '/promo' },
+  { label: 'Layanan', href: '/#services' },
+  { label: 'Kontak', href: '/kontak' },
 ] as const;
 
 export default function Header() {
-  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 28);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    const update = () => setScrolled(window.scrollY > 16);
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    return () => window.removeEventListener('scroll', update);
   }, []);
 
-  const consult = () => openWhatsApp('Halo Mas Yusuf, saya ingin konsultasi kendaraan Isuzu. Mohon bantu rekomendasikan unit yang sesuai dengan kebutuhan saya.');
-  const priceInfo = () => openWhatsApp('Halo Mas Yusuf, saya ingin informasi harga OTR, promo, dan rekomendasi unit Isuzu yang sesuai kebutuhan saya.');
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMenuOpen(false);
+    };
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [menuOpen]);
+
+  const askPrice = () => {
+    setMenuOpen(false);
+    openWhatsApp('Halo Mas Yusuf, saya ingin informasi harga OTR, promo, dan rekomendasi unit Isuzu sesuai kebutuhan usaha saya.');
+  };
+
+  const isActive = (href: string) => href === '/' ? pathname === '/' : !href.includes('#') && pathname === href;
 
   return (
     <>
-      <header className={`fixed inset-x-0 top-0 z-50 border-b border-white/60 bg-[linear-gradient(180deg,rgba(252,251,248,.94),rgba(247,247,244,.84))] text-[#202225] backdrop-blur-2xl transition-all duration-300 ${scrolled ? 'shadow-[0_18px_50px_rgba(20,22,24,.10)]' : 'shadow-[0_10px_34px_rgba(20,22,24,.05)]'}`}>
-        <div className="h-[3px] bg-[linear-gradient(90deg,#D71920_0%,#EF2B31_38%,#D71920_72%,rgba(215,25,32,.6)_100%)]" />
-        <div className={`mx-auto flex max-w-[1440px] items-center justify-between px-5 transition-all duration-300 sm:px-7 lg:px-10 ${scrolled ? 'h-[76px]' : 'h-[84px]'}`}>
-          <a href="/" className="flex min-w-0 items-center gap-3" aria-label="Isuzu Jogja Commercial Vehicle Sales">
+      <header className={`fixed inset-x-0 top-0 z-50 border-b border-[#E7E9EC] bg-white/95 text-[#17212D] backdrop-blur-xl transition-shadow duration-300 ${scrolled || menuOpen ? 'shadow-[0_12px_35px_rgba(12,27,41,.10)]' : 'shadow-[0_3px_18px_rgba(12,27,41,.035)]'}`}>
+        <div className="h-[3px] w-full bg-[#D71920]" />
+        <div className="hidden border-b border-[#ECEEF0] bg-[#F8F9FA] md:block">
+          <div className="mx-auto flex h-8 max-w-[1440px] items-center justify-between px-5 text-[10px] font-bold tracking-[.12em] text-[#616D79] sm:px-7 lg:px-10">
+            <span className="uppercase">ISUZU JOGJA <span className="mx-2 text-[#C8CED5]">/</span> SOLUSI KENDARAAN NIAGA</span>
+            <span className="uppercase">REAL PARTNER. REAL JOURNEY.</span>
+          </div>
+        </div>
+
+        <div className={`mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-5 transition-[height] duration-300 sm:px-7 lg:px-10 ${scrolled ? 'h-[68px] md:h-[74px]' : 'h-[72px] md:h-[82px]'}`}>
+          <Link href="/" onClick={() => setMenuOpen(false)} className="flex min-w-0 shrink-0 items-center" aria-label="Isuzu Jogja - Beranda">
             <Image
               src="/images/brand/isuzu-jogja-commercial-logo.png"
-              alt="Isuzu Jogja Commercial Vehicle Sales"
+              alt="Isuzu Jogja"
               width={1364}
               height={504}
               priority
-              className={`w-auto transition-all duration-300 ${scrolled ? 'h-11 sm:h-12' : 'h-12 sm:h-14'}`}
+              className="h-11 w-auto max-w-[174px] object-contain sm:h-[53px] sm:max-w-[200px]"
             />
-          </a>
+          </Link>
 
-          <nav className="hidden items-center gap-7 xl:flex">
-            {nav.map(([label, href]) => (
-              <a key={href} href={href} className="group relative text-[11px] font-extrabold uppercase tracking-[.14em] text-[#202225]/62 transition hover:text-[#D71920] after:absolute after:-bottom-2 after:left-0 after:h-px after:w-0 after:bg-[#D71920] after:transition-all after:duration-300 hover:after:w-full">
+          <nav aria-label="Navigasi utama" className="hidden items-center gap-1 lg:flex">
+            {navigation.map(({ label, href }) => (
+              <Link
+                key={href}
+                href={href}
+                aria-current={isActive(href) ? 'page' : undefined}
+                className={`group relative whitespace-nowrap px-2.5 py-3 text-[11px] font-extrabold uppercase tracking-[.075em] transition-colors xl:px-3 xl:text-xs ${isActive(href) ? 'text-[#D71920]' : 'text-[#3E4854] hover:text-[#D71920]'}`}
+              >
                 {label}
-              </a>
+                <span className={`absolute bottom-1 left-2.5 right-2.5 h-[2px] origin-left bg-[#D71920] transition-transform duration-200 xl:left-3 xl:right-3 ${isActive(href) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`} />
+              </Link>
             ))}
           </nav>
 
-          <div className="hidden items-center gap-3 lg:flex">
-            <div className="hidden xl:block text-right">
-              <p className="text-[10px] font-extrabold uppercase tracking-[.16em] text-[#D71920]">Yogyakarta • Konsultasi Cepat</p>
-              <p className="mt-1 text-xs text-[#202225]/54">Unit usaha, fleet, promo, dan harga OTR.</p>
-            </div>
-            <button onClick={consult} className="rounded-full border border-[#202225]/12 bg-white/55 px-4 py-2.5 shadow-[inset_0_1px_0_rgba(255,255,255,.8)] backdrop-blur text-[10px] font-extrabold uppercase tracking-[.12em] text-[#202225] transition hover:border-[#D71920] hover:text-[#D71920]">Chat Yusuf</button>
-            <button onClick={priceInfo} className="rounded-full bg-[linear-gradient(135deg,#D71920,#EF2B31)] px-5 py-2.5 shadow-[0_10px_24px_rgba(215,25,32,.24)] text-[10px] font-extrabold uppercase tracking-[.12em] text-white transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_32px_rgba(215,25,32,.32)]">Tanya Harga</button>
+          <div className="flex shrink-0 items-center gap-2">
+            <button
+              type="button"
+              onClick={askPrice}
+              className="hidden min-h-11 items-center justify-center gap-2 bg-[#D71920] px-4 text-[11px] font-extrabold uppercase tracking-[.065em] text-white shadow-[0_8px_20px_rgba(215,25,32,.17)] transition-colors hover:bg-[#B9141B] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D71920] sm:inline-flex xl:px-5"
+            >
+              <MessageCircle size={16} aria-hidden="true" /> Tanya Harga
+              <ArrowUpRight size={15} aria-hidden="true" className="hidden xl:block" />
+            </button>
+            <button
+              type="button"
+              onClick={() => setMenuOpen((value) => !value)}
+              aria-expanded={menuOpen}
+              aria-controls="isuzu-mobile-navigation"
+              aria-label={menuOpen ? 'Tutup menu navigasi' : 'Buka menu navigasi'}
+              className="grid h-11 w-11 place-items-center border border-[#DFE3E7] bg-white text-[#182330] transition-colors hover:border-[#D71920] hover:text-[#D71920] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D71920] lg:hidden"
+            >
+              {menuOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
           </div>
-
-          <button className="grid h-10 w-10 place-items-center rounded-full border border-[#202225]/10 bg-white/70 lg:hidden" onClick={() => setOpen(!open)} aria-label="Buka menu">
-            {open ? <X size={21} /> : <Menu size={21} />}
-          </button>
         </div>
 
-        {open && (
-          <div className="border-t border-[#202225]/10 bg-[#F8F4EC] px-5 pb-5 pt-3 text-[#202225] sm:px-7 lg:hidden">
-            <div className="mb-4 rounded-2xl border border-[#202225]/10 bg-white/80 p-4">
-              <p className="text-[10px] font-extrabold uppercase tracking-[.16em] text-[#D71920]">Konsultasi Cepat</p>
-              <p className="mt-1 text-sm text-[#202225]/64">Butuh harga OTR, promo, atau rekomendasi unit? Chat Yusuf langsung.</p>
+        {menuOpen && (
+          <nav id="isuzu-mobile-navigation" aria-label="Navigasi mobile" className="max-h-[calc(100dvh-82px)] overflow-y-auto border-t border-[#E7E9EC] bg-white px-5 pb-6 pt-3 shadow-[0_16px_35px_rgba(12,27,41,.12)] sm:px-7 lg:hidden">
+            <p className="pb-3 pt-2 text-[10px] font-extrabold uppercase tracking-[.18em] text-[#D71920]">Jelajahi Isuzu Jogja</p>
+            {navigation.map(({ label, href }) => (
+              <Link
+                key={href}
+                href={href}
+                onClick={() => setMenuOpen(false)}
+                aria-current={isActive(href) ? 'page' : undefined}
+                className={`flex min-h-12 items-center justify-between border-b border-[#EDF0F2] py-3 text-sm font-bold ${isActive(href) ? 'text-[#D71920]' : 'text-[#27323F]'}`}
+              >
+                {label} <ChevronRight size={16} className="text-[#9BA6B1]" aria-hidden="true" />
+              </Link>
+            ))}
+            <div className="mt-5 border-l-[3px] border-[#D71920] bg-[#F4F6F8] p-4">
+              <p className="text-xs font-black uppercase text-[#17212D]">Perlu rekomendasi kendaraan?</p>
+              <p className="mt-1 text-xs leading-5 text-[#67727E]">Temukan pilihan sesuai kebutuhan usaha dari section konsultasi di beranda.</p>
+              <Link href="/#konsultasi-armada" onClick={() => setMenuOpen(false)} className="mt-3 inline-flex items-center gap-1 text-xs font-extrabold text-[#D71920]">Lihat Konsultasi <ChevronRight size={15} /></Link>
             </div>
-            <div className="grid">
-              {nav.map(([label, href]) => (
-                <a onClick={() => setOpen(false)} key={href} href={href} className="border-b border-[#202225]/10 py-4 text-sm font-bold">
-                  {label}
-                </a>
-              ))}
-            </div>
-            <div className="mt-4 grid gap-2">
-              <button onClick={priceInfo} className="flex w-full items-center justify-center gap-2 rounded-full bg-[#D71920] px-4 py-3.5 text-sm font-extrabold text-white">
-                <MessageCircle size={16} /> Tanya Harga & Promo
-              </button>
-              <button onClick={consult} className="flex w-full items-center justify-center gap-2 rounded-full border border-[#202225]/12 bg-white px-4 py-3.5 text-sm font-extrabold text-[#202225]">
-                <MessageCircle size={16} /> Konsultasi dengan Yusuf
-              </button>
-            </div>
-          </div>
+            <button onClick={askPrice} className="mt-4 flex min-h-12 w-full items-center justify-center gap-2 bg-[#D71920] px-4 text-xs font-extrabold uppercase tracking-[.08em] text-white">
+              <MessageCircle size={17} /> Tanya Harga via WhatsApp
+            </button>
+          </nav>
         )}
       </header>
 
-      <div className="fixed bottom-4 left-4 right-4 z-40 flex items-center gap-2 rounded-[22px] border border-[#202225]/10 bg-white/96 p-1.5 shadow-[0_14px_45px_rgba(11,28,44,.18)] backdrop-blur-xl md:hidden">
-        <a href="/produk" className="flex-1 rounded-2xl px-3 py-3 text-center text-xs font-extrabold text-[#202225]">Lihat Produk</a>
-        <button onClick={priceInfo} className="flex flex-[1.25] items-center justify-center gap-2 rounded-2xl bg-[#D71920] px-3 py-3 text-xs font-extrabold text-white"><MessageCircle size={15} /> Tanya Harga</button>
+      {/* CTA bottom tetap ada untuk akses WhatsApp dari ponsel. */}
+      <div className="fixed bottom-3 left-3 right-3 z-40 flex items-center gap-2 border border-[#E3E7EA] bg-white/95 p-1.5 shadow-[0_12px_35px_rgba(12,27,41,.16)] backdrop-blur-xl md:hidden">
+        <Link href="/produk" className="flex min-h-11 flex-1 items-center justify-center px-2 text-xs font-extrabold text-[#24313D]">Lihat Produk</Link>
+        <button type="button" onClick={askPrice} className="flex min-h-11 flex-[1.2] items-center justify-center gap-2 bg-[#D71920] px-3 text-xs font-extrabold text-white">
+          <MessageCircle size={16} /> Tanya Harga
+        </button>
       </div>
     </>
   );
