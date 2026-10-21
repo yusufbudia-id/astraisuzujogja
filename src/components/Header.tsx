@@ -47,21 +47,24 @@ export default function Header() {
     openWhatsApp('Halo Mas Yusuf, saya ingin informasi harga OTR, promo, dan rekomendasi unit Isuzu sesuai kebutuhan usaha saya.');
   };
 
+  // Transparent only over the homepage hero; other pages keep an opaque header.
+  const transparent = pathname === '/' && !scrolled && !menuOpen;
+
   const isActive = (href: string) => href === '/' ? pathname === '/' : !href.includes('#') && pathname === href;
 
   return (
     <>
-      <header className={`fixed inset-x-0 top-0 z-50 border-b border-[#E7E9EC] bg-white/95 text-[#17212D] backdrop-blur-xl transition-shadow duration-300 ${scrolled || menuOpen ? 'shadow-[0_12px_35px_rgba(12,27,41,.10)]' : 'shadow-[0_3px_18px_rgba(12,27,41,.035)]'}`}>
+      <header className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-300 ${transparent ? 'border-white/20 bg-[#0B1420]/35 text-white backdrop-blur-md' : 'border-[#E7E9EC] bg-white/95 text-[#17212D] shadow-[0_12px_35px_rgba(12,27,41,.10)] backdrop-blur-xl'}`}>
         <div className="h-[3px] w-full bg-[#D71920]" />
-        <div className="hidden border-b border-[#ECEEF0] bg-[#F8F9FA] md:block">
-          <div className="mx-auto flex h-8 max-w-[1440px] items-center justify-between px-5 text-[10px] font-bold tracking-[.12em] text-[#616D79] sm:px-7 lg:px-10">
-            <span className="uppercase">ISUZU JOGJA <span className="mx-2 text-[#C8CED5]">/</span> SOLUSI KENDARAAN NIAGA</span>
+        <div className={`hidden border-b md:block ${transparent ? 'border-white/15 bg-[#07111C]/35' : 'border-[#ECEEF0] bg-[#F8F9FA]'}`}>
+          <div className={`mx-auto flex h-8 max-w-[1440px] items-center justify-between px-5 text-[10px] font-bold tracking-[.12em] sm:px-7 lg:px-10 ${transparent ? 'text-white/80' : 'text-[#616D79]'}`}>
+            <span className="uppercase">ISUZU JOGJA <span className={`mx-2 ${transparent ? 'text-white/40' : 'text-[#C8CED5]'}`}>/</span> SOLUSI KENDARAAN NIAGA</span>
             <span className="uppercase">REAL PARTNER. REAL JOURNEY.</span>
           </div>
         </div>
 
         <div className={`mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-5 transition-[height] duration-300 sm:px-7 lg:px-10 ${scrolled ? 'h-[68px] md:h-[74px]' : 'h-[72px] md:h-[82px]'}`}>
-          <Link href="/" onClick={() => setMenuOpen(false)} className="flex min-w-0 shrink-0 items-center" aria-label="Isuzu Jogja - Beranda">
+          <Link href="/" onClick={() => setMenuOpen(false)} className={`flex min-w-0 shrink-0 items-center transition-colors ${transparent ? 'rounded-sm bg-white/95 px-2 py-1 shadow-sm' : ''}`} aria-label="Isuzu Jogja - Beranda">
             <Image
               src="/images/brand/isuzu-jogja-commercial-logo.png"
               alt="Isuzu Jogja"
@@ -78,7 +81,7 @@ export default function Header() {
                 key={href}
                 href={href}
                 aria-current={isActive(href) ? 'page' : undefined}
-                className={`group relative whitespace-nowrap px-2.5 py-3 text-[11px] font-extrabold uppercase tracking-[.075em] transition-colors xl:px-3 xl:text-xs ${isActive(href) ? 'text-[#D71920]' : 'text-[#3E4854] hover:text-[#D71920]'}`}
+                className={`group relative whitespace-nowrap px-2.5 py-3 text-[11px] font-extrabold uppercase tracking-[.075em] transition-colors xl:px-3 xl:text-xs ${isActive(href) ? (transparent ? 'text-white' : 'text-[#D71920]') : (transparent ? 'text-white/85 hover:text-white' : 'text-[#3E4854] hover:text-[#D71920]')}`}
               >
                 {label}
                 <span className={`absolute bottom-1 left-2.5 right-2.5 h-[2px] origin-left bg-[#D71920] transition-transform duration-200 xl:left-3 xl:right-3 ${isActive(href) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`} />
@@ -101,7 +104,7 @@ export default function Header() {
               aria-expanded={menuOpen}
               aria-controls="isuzu-mobile-navigation"
               aria-label={menuOpen ? 'Tutup menu navigasi' : 'Buka menu navigasi'}
-              className="grid h-11 w-11 place-items-center border border-[#DFE3E7] bg-white text-[#182330] transition-colors hover:border-[#D71920] hover:text-[#D71920] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D71920] lg:hidden"
+              className={`grid h-11 w-11 place-items-center border transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D71920] lg:hidden ${transparent ? 'border-white/40 bg-white/10 text-white hover:bg-white/20' : 'border-[#DFE3E7] bg-white text-[#182330] hover:border-[#D71920] hover:text-[#D71920]'}`}
             >
               {menuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
