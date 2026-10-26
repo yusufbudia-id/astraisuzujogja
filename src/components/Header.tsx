@@ -64,9 +64,9 @@ export default function Header() {
         </div>
 
         <div className={`mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-5 transition-[height] duration-300 sm:px-7 lg:px-10 ${scrolled ? 'h-[68px] md:h-[74px]' : 'h-[72px] md:h-[82px]'}`}>
-          <Link href="/" onClick={() => setMenuOpen(false)} className={`flex min-w-0 shrink-0 items-center transition-colors ${transparent ? 'rounded-sm bg-white/95 px-2 py-1 shadow-sm' : ''}`} aria-label="Isuzu Jogja - Beranda">
+          <Link href="/" onClick={() => setMenuOpen(false)} className="flex min-w-0 shrink-0 items-center" aria-label="Isuzu Jogja - Beranda">
             <Image
-              src="/images/brand/isuzu-jogja-commercial-logo.png"
+              src={transparent ? "/images/brand/isuzu-jogja-commercial-logo-dark-hero.png" : "/images/brand/isuzu-jogja-commercial-logo.png"}
               alt="Isuzu Jogja"
               width={1364}
               height={504}
