@@ -10,6 +10,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
     ['', 'weekly', 1],
     ['/produk', 'weekly', 0.95],
+    ['/karoseri', 'monthly', 0.8],
+    ['/karoseri/towing-jogja', 'monthly', 0.85],
     ['/simulasi-kredit', 'monthly', 0.75],
     ['/promo', 'weekly', 0.8],
     ['/artikel', 'weekly', 0.75],
