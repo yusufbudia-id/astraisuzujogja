@@ -1,17 +1,16 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ArrowUpRight, ChevronRight, Menu, MessageCircle, X } from 'lucide-react';
+import { ArrowUpRight, ChevronDown, ChevronRight, Menu, MessageCircle, X } from 'lucide-react';
 import { openWhatsApp } from '@/lib/whatsapp';
 
 // Konsultasi Armada tetap berada di section beranda, bukan menu header.
 const navigation = [
   { label: 'Beranda', href: '/' },
   { label: 'Produk', href: '/produk' },
-  { label: 'Solusi Bisnis', href: '/#solutions' },
   { label: 'Promo', href: '/promo' },
   { label: 'Layanan', href: '/#services' },
   { label: 'Kontak', href: '/kontak' },
@@ -21,6 +20,8 @@ export default function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [solutionsOpen, setSolutionsOpen] = useState(false);
+  const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
 
   useEffect(() => {
     const update = () => setScrolled(window.scrollY > 16);
@@ -31,16 +32,33 @@ export default function Header() {
 
   useEffect(() => {
     setMenuOpen(false);
+    setSolutionsOpen(false);
+    setMobileSolutionsOpen(false);
   }, [pathname]);
 
   useEffect(() => {
     if (!menuOpen) return;
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setMenuOpen(false);
+      if (event.key === 'Escape') { setMenuOpen(false); setSolutionsOpen(false); }
     };
     window.addEventListener('keydown', handleEscape);
     return () => window.removeEventListener('keydown', handleEscape);
   }, [menuOpen]);
+
+  const solutionItems = [
+    { label: 'Logistik & Distribusi', href: '/#solutions' },
+    { label: 'Konstruksi', href: '/#solutions' },
+    { label: 'Pertanian & Perkebunan', href: '/#solutions' },
+    { label: 'Retail & FMCG', href: '/#solutions' },
+    { label: 'Transportasi Penumpang', href: '/#solutions' },
+  ];
+  const karoseriItems = [
+    { label: 'Mobil Towing', href: '/karoseri/towing-jogja' },
+    { label: 'Dump Truck', href: null },
+    { label: 'Mobil Box', href: null },
+    { label: 'Bak Terbuka', href: null },
+    { label: 'Truk Tangki', href: null },
+  ];
 
   const askPrice = () => {
     setMenuOpen(false);
@@ -77,7 +95,7 @@ export default function Header() {
 
           <nav aria-label="Navigasi utama" className="hidden items-center gap-1 lg:flex">
             {navigation.map(({ label, href }) => (
-              <Link
+              <Fragment key={href}><Link
                 key={href}
                 href={href}
                 aria-current={isActive(href) ? 'page' : undefined}
@@ -85,7 +103,25 @@ export default function Header() {
               >
                 {label}
                 <span className={`absolute bottom-1 left-2.5 right-2.5 h-[2px] origin-left bg-[#D71920] transition-transform duration-200 xl:left-3 xl:right-3 ${isActive(href) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`} />
-              </Link>
+              </Link>{href === '/produk' && (<div className="relative" onMouseEnter={() => setSolutionsOpen(true)} onMouseLeave={() => setSolutionsOpen(false)}>
+              <button type="button" aria-expanded={solutionsOpen} aria-controls="solusi-bisnis-desktop" onClick={() => setSolutionsOpen((v) => !v)} className={`inline-flex items-center gap-1 whitespace-nowrap px-2.5 py-3 text-[11px] font-extrabold uppercase tracking-[.075em] transition-colors xl:px-3 xl:text-xs ${transparent ? 'text-white/85 hover:text-white' : 'text-[#3E4854] hover:text-[#D71920]'}`}>
+                Solusi Bisnis <ChevronDown size={14} className={`transition-transform ${solutionsOpen ? 'rotate-180' : ''}`} />
+              </button>
+              {solutionsOpen && (
+                <div id="solusi-bisnis-desktop" className="absolute right-0 top-full z-50 w-[560px] border border-[#E7E9EC] bg-white p-6 text-[#17212D] shadow-[0_20px_55px_rgba(0,0,0,.20)]" onKeyDown={(event) => { if (event.key === 'Escape') setSolutionsOpen(false); }}>
+                  <div className="grid grid-cols-2 gap-8">
+                    <div><p className="mb-3 text-[10px] font-black uppercase tracking-[.15em] text-[#D71920]">Berdasarkan Industri</p>
+                      {solutionItems.map(item => <Link key={item.label} href={item.href} onClick={() => setSolutionsOpen(false)} className="block rounded-sm py-2 text-[13px] font-semibold text-[#344252] hover:text-[#D71920]">{item.label}</Link>)}
+                    </div>
+                    <div><p className="mb-3 text-[10px] font-black uppercase tracking-[.15em] text-[#D71920]">Berdasarkan Karoseri</p>
+                      {karoseriItems.map(item => item.href ? <Link key={item.label} href={item.href} onClick={() => setSolutionsOpen(false)} className="block rounded-sm py-2 text-[13px] font-semibold text-[#344252] hover:text-[#D71920]">{item.label}</Link> : <span key={item.label} className="block py-2 text-[13px] text-[#99A2AC]" title="Halaman sedang disiapkan">{item.label} <span className="text-[10px]">(segera)</span></span>)}
+                      <Link href="/karoseri" onClick={() => setSolutionsOpen(false)} className="mt-3 inline-flex items-center gap-1 text-xs font-extrabold text-[#D71920] hover:underline">Lihat Semua Karoseri <ArrowUpRight size={14}/></Link>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>)}
+              </Fragment>
             ))}
           </nav>
 
@@ -125,6 +161,18 @@ export default function Header() {
                 {label} <ChevronRight size={16} className="text-[#9BA6B1]" aria-hidden="true" />
               </Link>
             ))}
+            <div className="border-b border-[#EDF0F2]">
+              <button type="button" aria-expanded={mobileSolutionsOpen} aria-controls="solusi-bisnis-mobile" onClick={() => setMobileSolutionsOpen(v => !v)} className="flex min-h-12 w-full items-center justify-between py-3 text-left text-sm font-bold text-[#27323F]">
+                Solusi Bisnis <ChevronDown size={17} className={`text-[#D71920] transition-transform ${mobileSolutionsOpen ? 'rotate-180' : ''}`}/>
+              </button>
+              {mobileSolutionsOpen && <div id="solusi-bisnis-mobile" className="pb-4 pl-3">
+                <p className="py-2 text-[10px] font-extrabold uppercase tracking-[.1em] text-[#D71920]">Berdasarkan Industri</p>
+                {solutionItems.map(item => <Link key={item.label} href={item.href} onClick={() => setMenuOpen(false)} className="block py-2 text-sm text-[#344252]">{item.label}</Link>)}
+                <p className="pb-2 pt-4 text-[10px] font-extrabold uppercase tracking-[.1em] text-[#D71920]">Berdasarkan Karoseri</p>
+                {karoseriItems.map(item => item.href ? <Link key={item.label} href={item.href} onClick={() => setMenuOpen(false)} className="block py-2 text-sm text-[#344252]">{item.label}</Link> : <span key={item.label} className="block py-2 text-sm text-[#9CA5AF]">{item.label} (segera)</span>)}
+                <Link href="/karoseri" onClick={() => setMenuOpen(false)} className="mt-2 inline-flex items-center gap-1 py-2 text-sm font-bold text-[#D71920]">Lihat Semua Karoseri <ArrowUpRight size={15}/></Link>
+              </div>}
+            </div>
             <div className="mt-5 border-l-[3px] border-[#D71920] bg-[#F4F6F8] p-4">
               <p className="text-xs font-black uppercase text-[#17212D]">Perlu rekomendasi kendaraan?</p>
               <p className="mt-1 text-xs leading-5 text-[#67727E]">Temukan pilihan sesuai kebutuhan usaha dari section konsultasi di beranda.</p>
