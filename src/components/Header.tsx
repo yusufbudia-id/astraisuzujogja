@@ -56,7 +56,7 @@ export default function Header() {
     { label: 'Mobil Towing', href: '/karoseri/towing-jogja' },
     { label: 'Dump Truck', href: '/karoseri/dump-truck-jogja' },
     { label: 'Mobil Box', href: '/karoseri/mobil-box-jogja' },
-    { label: 'Bak Terbuka', href: null },
+    { label: 'Bak Terbuka & Flatbed', href: '/karoseri/bak-terbuka-flatbed-jogja' },
     { label: 'Truk Tangki', href: null },
   ];
 
