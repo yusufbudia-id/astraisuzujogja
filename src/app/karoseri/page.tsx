@@ -4,7 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Panduan Karoseri Isuzu Jogja | Towing, Box, Dump, Bak & Flatbed',
+  title: 'Panduan Karoseri Isuzu Jogja | Towing, Box, Dump, Bak, Flatbed & Tangki',
   description: 'Kenali jenis karoseri kendaraan niaga di Yogyakarta: towing, box, dump truck, bak terbuka dan lainnya. Konsultasi pemilihan chassis Isuzu sesuai kebutuhan usaha.',
   alternates: { canonical: '/karoseri' },
 };
@@ -14,7 +14,8 @@ const kategori = [
   { title: 'Mobil Box', desc: 'Panduan box aluminium, besi, dan pendingin; menentukan dimensi ruang kargo serta chassis yang sesuai.', href: '/karoseri/mobil-box-jogja', active: true },
   { title: 'Dump Truck', desc: 'Panduan memilih dump untuk pasir, batu, tanah, serta kegiatan konstruksi dan pengangkutan material.', href: '/karoseri/dump-truck-jogja', active: true },
   { title: 'Bak Terbuka & Flatbed', desc: 'Panduan bak berpagar dan platform datar, pemilihan chassis, pengikatan muatan, serta pertimbangan operasional.', href: '/karoseri/bak-terbuka-flatbed-jogja', active: true },
-  { title: 'Tangki / Pendingin / Khusus', desc: 'Karoseri khusus untuk kebutuhan operasional tertentu.', href: '', active: false },
+  { title: 'Truk Tangki', desc: 'Panduan truk tangki air, kebutuhan kapasitas, pemilihan chassis, pompa, dan pertimbangan keselamatan untuk cairan khusus.', href: '/karoseri/truk-tangki-jogja', active: true },
+  { title: 'Karoseri Pendingin & Khusus', desc: 'Informasi karoseri khusus lainnya sedang disiapkan.', href: '', active: false },
 ];
 
 export default function KaroseriPage() {

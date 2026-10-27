@@ -57,7 +57,7 @@ export default function Header() {
     { label: 'Dump Truck', href: '/karoseri/dump-truck-jogja' },
     { label: 'Mobil Box', href: '/karoseri/mobil-box-jogja' },
     { label: 'Bak Terbuka & Flatbed', href: '/karoseri/bak-terbuka-flatbed-jogja' },
-    { label: 'Truk Tangki', href: null },
+    { label: 'Truk Tangki', href: '/karoseri/truk-tangki-jogja' },
   ];
 
   const askPrice = () => {
