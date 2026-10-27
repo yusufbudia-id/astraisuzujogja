@@ -54,7 +54,7 @@ export default function Header() {
   ];
   const karoseriItems = [
     { label: 'Mobil Towing', href: '/karoseri/towing-jogja' },
-    { label: 'Dump Truck', href: null },
+    { label: 'Dump Truck', href: '/karoseri/dump-truck-jogja' },
     { label: 'Mobil Box', href: null },
     { label: 'Bak Terbuka', href: null },
     { label: 'Truk Tangki', href: null },
