@@ -1,3 +1,4 @@
+import KaroseriVisualGallery from '@/components/KaroseriVisualGallery';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Header from '@/components/Header';
@@ -45,6 +46,7 @@ export default function DumpTruckJogjaPage() {
           <div className="mt-9 flex flex-wrap gap-3"><a href={whatsapp} target="_blank" rel="noopener noreferrer" className="bg-[#D71920] px-7 py-4 text-sm font-extrabold text-white hover:bg-[#B81118]">Konsultasi Dump Truck ↗</a><Link href="/produk" className="border border-white/35 px-7 py-4 text-sm font-extrabold hover:bg-white/10">Lihat Katalog Isuzu</Link></div>
         </div>
       </section>
+<KaroseriVisualGallery kind="dump" />
       <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
         <p className="text-xs font-black uppercase tracking-widest text-[#D71920]">Mengenal karoseri dump</p>
         <h2 className="mt-3 text-3xl font-black">Apa itu dump truck, dan apa saja jenisnya?</h2>

@@ -1,3 +1,4 @@
+import KaroseriVisualGallery from '@/components/KaroseriVisualGallery';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Header from '@/components/Header';
@@ -36,6 +37,7 @@ export default function TowingJogjaPage() {
         <div className="mt-9 flex flex-wrap gap-3"><a href={`https://wa.me/${WHATSAPP_NUMBER}?text=${waText}`} target="_blank" rel="noopener noreferrer" className="bg-[#D71920] px-7 py-4 text-sm font-extrabold text-white hover:bg-[#BA121A]">Konsultasi Towing via WhatsApp ↗</a><Link href="/produk" className="border border-white/35 px-7 py-4 text-sm font-extrabold text-white hover:bg-white/10">Lihat Chassis Isuzu</Link></div>
       </div>
     </section>
+<KaroseriVisualGallery kind="towing" />
     <section className="mx-auto max-w-6xl px-5 py-14 sm:px-8">
       <div className="grid gap-10 lg:grid-cols-[1.6fr_1fr]">
         <div><h2 className="text-3xl font-black">Towing angkut kendaraan berbeda dengan mobil derek</h2>

@@ -1,3 +1,4 @@
+import KaroseriVisualGallery from '@/components/KaroseriVisualGallery';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Header from '@/components/Header';
@@ -49,6 +50,7 @@ export default function MobilBoxJogjaPage() {
           <div className="mt-9 flex flex-wrap gap-3"><a href={whatsapp} target="_blank" rel="noopener noreferrer" className="bg-[#D71920] px-7 py-4 text-sm font-extrabold hover:bg-[#B81016]">Konsultasi Mobil Box ↗</a><Link href="/produk" className="border border-white/35 px-7 py-4 text-sm font-extrabold hover:bg-white/10">Lihat Produk Isuzu</Link></div>
         </div>
       </section>
+<KaroseriVisualGallery kind="box" />
       <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
         <p className="text-xs font-black uppercase tracking-widest text-[#D71920]">Kenali ragam karoseri</p><h2 className="mt-3 text-3xl font-black">Pilih jenis box sesuai karakter barang</h2>
         <p className="mt-4 max-w-4xl leading-8 text-slate-600">Mobil box dirancang untuk melindungi barang di ruang kargo tertutup. Namun, material, rangka, insulasi dan peralatan tambahan memengaruhi berat kosong serta kebutuhan perawatannya.</p>

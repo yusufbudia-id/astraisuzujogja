@@ -1,3 +1,4 @@
+import KaroseriVisualGallery from '@/components/KaroseriVisualGallery';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Header from '@/components/Header';
@@ -29,6 +30,7 @@ export default function KaroseriPage() {
       
         <div className="mt-8 flex flex-col gap-4 bg-[#111B28] p-7 text-white sm:flex-row sm:items-center sm:justify-between"><div><p className="text-xs font-bold uppercase tracking-widest text-[#FF7578]">PANDUAN PEMBELI</p><h2 className="mt-2 text-2xl font-black">Belum tahu chassis dan karoseri yang cocok?</h2><p className="mt-2 text-sm leading-6 text-white/75">Bandingkan kebutuhan barang, muatan, rute, pembiayaan, dan pengesahan teknis sebelum memilih unit.</p></div><Link href="/karoseri/panduan-memilih" className="shrink-0 bg-[#D71920] px-5 py-3 text-center text-sm font-bold text-white">Mulai panduan →</Link></div>
 </section>
+<KaroseriVisualGallery kind="overview" />
       <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
         <h2 className="text-2xl font-extrabold">Jelajahi jenis karoseri</h2>
         <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
