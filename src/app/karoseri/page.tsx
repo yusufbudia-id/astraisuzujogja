@@ -26,7 +26,9 @@ export default function KaroseriPage() {
           <h1 className="mt-5 max-w-4xl text-4xl font-black uppercase leading-tight sm:text-6xl">Pilih Karoseri Sesuai Kebutuhan Usaha</h1>
           <p className="mt-5 max-w-3xl leading-8 text-white/75">Tidak semua truk mempunyai fungsi yang sama. Kenali bentuk dan kegunaan karoseri sebelum memilih chassis, varian, serta anggaran kendaraan Isuzu di Yogyakarta.</p>
         </div>
-      </section>
+      
+        <div className="mt-8 flex flex-col gap-4 bg-[#111B28] p-7 text-white sm:flex-row sm:items-center sm:justify-between"><div><p className="text-xs font-bold uppercase tracking-widest text-[#FF7578]">PANDUAN PEMBELI</p><h2 className="mt-2 text-2xl font-black">Belum tahu chassis dan karoseri yang cocok?</h2><p className="mt-2 text-sm leading-6 text-white/75">Bandingkan kebutuhan barang, muatan, rute, pembiayaan, dan pengesahan teknis sebelum memilih unit.</p></div><Link href="/karoseri/panduan-memilih" className="shrink-0 bg-[#D71920] px-5 py-3 text-center text-sm font-bold text-white">Mulai panduan →</Link></div>
+</section>
       <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
         <h2 className="text-2xl font-extrabold">Jelajahi jenis karoseri</h2>
         <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
